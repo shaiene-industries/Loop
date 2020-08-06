@@ -1,4 +1,4 @@
-lfrom django.urls import path 
+from django.urls import path 
 from . import views # Use this for functions
 from .views import HomeView, ArticleView, NewPostView # Use this for classes
 
