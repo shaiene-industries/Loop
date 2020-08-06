@@ -1,0 +1,45 @@
+{% extends 'base/base.html'%}
+{% block content%}
+
+        <h1 class="title" >Posts</h1>
+        <a href="{% url 'blog:postForm'%}">
+            <button class="btn btn-sm btn-outline-light" > Write a new post </button>
+        </a>
+
+        <div class="container-fluid">
+            <div class="row">
+                    
+                    
+                    {% for currentPost in object_list %}  
+
+
+                        <div class="col-sm-6" style="padding:2%;">
+                            <div class="card text-white bg-dark mb-3" style="height:100%; width:auto;">
+                                <h5 class="card-header" >
+                                    <a href="{% url 'blog:article-detail' currentPost.pk %}" > <b> {{ currentPost.title }}</b> </a>
+                                </h5>
+                                <div class="card-body">                               
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        by {{currentPost.author}}
+                                    </h6>
+                                    <p class="card-text">
+                                        {{ currentPost.body }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                    {% endfor %}
+
+            </div>
+        </div>
+
+
+
+            
+
+
+    </body>
+</html>
+{% endblock %}

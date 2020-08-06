@@ -1,0 +1,24 @@
+{% extends 'base/base.html'%}
+{% block content %}
+
+        <title>{{post.title}} | MyBlog</title>
+        <div class="container-fluid">
+            <div class="row block">
+                <div class="col-md-12 post-body">
+                    <h1>
+                        {{post.title}}<span style="font-size: large; margin-left: 5%;" >By {{post.author}}</span>
+                    </h1>
+                    <hr>
+                    <p>
+                        {{ post.body }}
+                    </p>
+                    <a href="{% url 'blog:home' %}">
+                        <button type="button" class="btn btn-outline-dark" style=" color:
+                            rgb(134, 172, 119); border: rgb(134, 172, 119) 3px;"> Go to Home </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+

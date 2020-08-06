@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+    <div class="row">
+        <div class="col">
+            <div class="card text-white bg-dark mb-3" style="height:100%; width:auto;">
+                <h1 class="card-header"> Write a new post </h1>
+                <div class="card-body">
+                    <form method="GET">
+                        {{ form.as_p }}
+                        <input type="submit" value="Save">
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+
+
+
+
+
+   
+
+{% endblock %}   
