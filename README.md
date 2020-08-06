@@ -65,3 +65,5 @@ python3 manage.py runserver
 ```
 
 Now, on a web browser, you should be able to open the site on localhost's port 8000: *localhost:8000*
+
+**Currently, a blank url will result in an error, to get to somewhere, use /posts or /admin at the end of localhost:8000**

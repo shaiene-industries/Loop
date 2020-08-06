@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('posts/', include('blog.urls',namespace='blog') ) 
+    path('posts/', include('blog.urls',namespace='blog') )
+    # path('',) TODO create an app that will be the main page 
 ]
 
