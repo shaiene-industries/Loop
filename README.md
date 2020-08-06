@@ -13,6 +13,8 @@ To start, create a Virtual Enviroment. The following things must be set up:
 
 To create a virtual enviroment in python, install pip:
 
+**Note: If you already setted the virtual enviroment up, go to the last command of this section**
+
 ### Debian based distros (Debian, Ubuntu, Mint, Elementary, Pop)
 
 Install pip (Python's package manager).  
