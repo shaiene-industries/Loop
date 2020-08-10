@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="pt-br">
     <head>
+        {% load static %}
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Minael's blog</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
         <style>
             .card  a{
                 color: rgb(134, 172, 119);
@@ -54,7 +54,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:1%;">
             <a class="navbar-brand" href="#">
-                <img src="https://pixabay.com/get/57e8dd4a4252a914f1dc8460da2932771336dfe4555775_640.png" style="width: 40px;">
+                <img src="{% static "base/img/lotus.png"%}" style="width: 40px;">
                 Minael's Blog
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
