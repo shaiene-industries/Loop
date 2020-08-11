@@ -1,9 +1,11 @@
 {% extends 'base/base.html' %}
 {% block content %}
-
+    <!--Inserting this page's stylesheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'posts/postForm/css/style.css' %}"> 
     <div class="row">
         <div class="col">
-            <div class="card text-white bg-dark mb-3" style="height:100%; width:auto;">
+            <div class="card text-white bg-dark mb-3">
                 <h1 class="card-header"> Write a new post </h1>
                 <div class="card-body">
                     <form method="GET">
@@ -15,13 +17,6 @@
 
 
         </div>
-    </div>
-    
-
-
-
-
-
-   
+    </div>   
 
 {% endblock %}   
