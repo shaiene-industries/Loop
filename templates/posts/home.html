@@ -1,20 +1,18 @@
 {% extends 'base/base.html'%}
 {% block content%}
 
+        <!--Inserting this page's stylesheet-->
+        {% load static %}
+        <link rel="stylesheet" href=" {% static 'posts/home/css/style.css' %} "> 
         <h1 class="title" >Posts</h1>
         <a href="{% url 'blog:postForm'%}">
             <button class="btn btn-sm btn-outline-light" > Write a new post </button>
         </a>
-
         <div class="container-fluid">
-            <div class="row">
-                    
-                    
+            <div class="row">                    
                     {% for currentPost in object_list %}  
-
-
-                        <div class="col-sm-6" style="padding:2%;">
-                            <div class="card text-white bg-dark mb-3" style="height:100%; width:auto;">
+                        <div class="col-sm-6 coluna">
+                            <div class="card text-white bg-dark mb-3">
                                 <h5 class="card-header" >
                                     <a href="{% url 'blog:article-detail' currentPost.pk %}" > <b> {{ currentPost.title }}</b> </a>
                                 </h5>
@@ -35,11 +33,4 @@
             </div>
         </div>
 
-
-
-            
-
-
-    </body>
-</html>
 {% endblock %}
