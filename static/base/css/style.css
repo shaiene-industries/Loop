@@ -1,0 +1,50 @@
+/* Tags */
+body{
+    background-color: #242940;
+    height: 100%;
+}
+nav{
+    margin-bottom:1%;
+}
+footer{
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(50, 52, 53);
+    color: white;
+    text-align: center;
+    margin-top:4%;
+}
+form label{
+    font-size: x-large;
+    color: white;
+}
+
+/* Tags within tags */
+nav img{
+    width: 40px;
+}
+
+/* Classes */
+.title{
+    color: white;
+}
+.post-body{
+    color:white;
+}
+.block{
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 8px outset rgb(51, 57, 59);
+    background-color:rgb(79, 88, 76);
+    padding: 3%;
+}
+.push{
+    height: 100%;
+}
+/* Classes with tags */
+.card  a{
+    color: rgb(134, 172, 119);
+}

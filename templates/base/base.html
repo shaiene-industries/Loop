@@ -8,53 +8,13 @@
         <title>Minael's blog</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <style>
-            .card  a{
-                color: rgb(134, 172, 119);
-            }
-            body{
-                background-color: #242940;
-                height: 100%;
-            }
-            .title{
-                color: white;
-            }
-            footer{
-                position:fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                background-color: rgb(50, 52, 53);
-                color: white;
-                text-align: center;
-                margin-top:4%;
-            }
-            .post-body{
-                color:white;
-            }
-            .block{
-                border-radius: 10px 10px 10px 10px;
-                -moz-border-radius: 10px 10px 10px 10px;
-                -webkit-border-radius: 10px 10px 10px 10px;
-                border: 8px outset rgb(51, 57, 59);
-                background-color:rgb(79, 88, 76);
-                padding: 3%;
-            }
-            .push{
-                height: 100%;
-            }
-            form label{
-                font-size: x-large;
-                color: white;
-            }
-        
-        </style>
+        <link rel="stylesheet" href="{% static "base/css/style.css" %}">
     </head>
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:1%;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                <img src="{% static "base/img/lotus.png"%}" style="width: 40px;">
+                <img src="{% static "base/img/lotus.png"%}">
                 Minael's Blog
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -65,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href=" {% url 'index:index'%}">Home</a>
+                        <a class="nav-link" href="{% url 'index:index'%}">Home</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href=" {% url 'blog:home'%}">Posts</a>
+                        <a class="nav-link" href="{% url 'blog:home'%}">Posts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'blog:base' %}">Base</a>
