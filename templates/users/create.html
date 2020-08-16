@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1 class="title">Create your user!</h1>
+<form method="post">
+    {% csrf_token %}
+    <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" required
+            id="id_username"> 
+            <!-- <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.</span></p> -->
+    <p><label for="id_email">Email address:</label> <input type="email" name="email" maxlength="254" id="id_email"></p>
+    <p><label for="id_password">Password:</label> <input type="password" name="password" maxlength="128" required
+            id="id_password"></p>
+    <input type="submit" value="Save">
+</form>
+{% endblock content %}
