@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
     <!--Inserting this page's stylesheet-->
     {% load static %}
@@ -10,8 +12,20 @@
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button>Save</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                            {{ form.title|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6">
+                            {{ form.author|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ form.body|as_crispy_field }}
+                            </div>    
+                        </div>
+                        <button class="btn btn-info btn-lg">Save</button>
                     </form>
                 </div>
             </div>
