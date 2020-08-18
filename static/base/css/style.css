@@ -1,20 +1,23 @@
 /* Tags */
+html{
+    position: relative;
+    min-height: 100%;
+}
 body{
     background-color: #242940;
-    height: 100%;
+    margin-bottom: 60px;
 }
 nav{
     margin-bottom:1%;
 }
-footer{
-    position:fixed;
-    left: 0;
+.footer{
+    position:absolute;
     bottom: 0;
     width: 100%;
+    height: 60px;
     background-color: rgb(50, 52, 53);
     color: white;
     text-align: center;
-    margin-top:4%;
 }
 form label{
     font-size: x-large;
@@ -45,6 +48,3 @@ nav img{
     height: 100%;
 }
 /* Classes with tags */
-.card  a{
-    color: rgb(134, 172, 119);
-}
