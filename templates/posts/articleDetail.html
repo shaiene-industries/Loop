@@ -1,13 +1,13 @@
 {% extends 'base/base.html'%}
-{% block title %}{{post.title}}{% endblock %}
+{% block title %}{{post.title}} | Minael's Blog{% endblock %}
 {% block content %}
         <!--Inserting this page's stylesheet-->
         {% load static %}
         <link rel="stylesheet" href=" {% static 'posts/articleDetail/css/style.css' %} "> 
         <title>{{post.title}} | MyBlog</title>
         <div class="container-fluid">
-            <div class="row block">
-                <div class="col-md-12 post-body">
+            <div class="row">
+                <div class="col post-body">
                     <h1>
                         {{post.title}}<span >By {{post.author}}</span>
                     </h1>
