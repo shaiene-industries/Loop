@@ -8,9 +8,10 @@
             <div class="card text-white bg-dark mb-3">
                 <h1 class="card-header"> Write a new post </h1>
                 <div class="card-body">
-                    <form method="GET">
+                    <form method="POST">
+                        {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" value="Save">
+                        <button>Save</button>
                     </form>
                 </div>
             </div>

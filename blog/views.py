@@ -14,9 +14,8 @@ class ArticleView(DetailView):
 class NewPostView(CreateView):
     model = Post
     template_name = 'posts/postForm.html'
-    fields = dict.fromkeys(["title","author","body"])
-    def addPost():
-        pass
+    fields = ["title","author","body"]
+
 
 def base(request):
     return render(request,'base/base.html',{})
