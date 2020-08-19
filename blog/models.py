@@ -9,7 +9,7 @@ class Post(models.Model):
     body = models.TextField()
 
     def __str__(self):
-        return self.title + " | by " + str(self.pk)
+        return self.title + " | by " + str(self.author)
 
     def get_absolute_url(self):
         return reverse('blog:articleDetail', kwargs={'pk': str(self.id)})
