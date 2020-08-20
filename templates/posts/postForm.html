@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% block title %}Add Post | Minael's Blog{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -25,7 +26,12 @@
                                 {{ form.body|as_crispy_field }}
                             </div>    
                         </div>
-                        <button class="btn btn-info btn-lg">Save</button>
+                        <div class="row">
+                            <div class='col d-flex flex-row-reverse'>
+                                <button class="btn btn-info btn-lg">Save</button>
+                            <div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
