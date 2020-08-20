@@ -18,7 +18,7 @@ class NewPostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/postForm.html'
     fields = ('title', 'author', 'body',)
-    login_url = '/admin/login/'
+    login_url = 'accounts/login/'
 
 
 
