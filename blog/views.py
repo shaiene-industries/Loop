@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import PostForm
 
 
 # Class views
@@ -17,8 +18,9 @@ class ArticleView(DetailView):
 class NewPostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/postForm.html'
-    fields = ('title', 'author', 'body',)
+    form_class = PostForm
     login_url = 'accounts/login/'
+
 
 
 
