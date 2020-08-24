@@ -2,10 +2,12 @@
 {% block title %}Add Post | Minael's Blog{% endblock %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
     <!--Inserting this page's stylesheet-->
     {% load static %}
     <link rel="stylesheet" href="{% static 'posts/postForm/css/style.css' %}"> 
+    <script src="{% static 'posts/postForm/js/main.js' %}"></script>
     <div class="row">
         <div class="col">
             <div class="card text-white bg-dark mb-3">
@@ -15,15 +17,21 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
-                            {{ form.title|as_crispy_field }}
+                                <div class="form-group">
+                                    {{ form.title.label_tag }}
+                                    {{ form.title }}
+                                </div>
                             </div>
                             <div class="col-md-6">
-                            {{ form.author|as_crispy_field }}
+                                <div class="form-group">
+                                    {{ form.author.label_tag }}
+                                    {{ form.author }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                {{ form.body|as_crispy_field }}
+                            {{form.body|as_crispy_field}}
                             </div>    
                         </div>
                         <div class="row">
@@ -33,6 +41,7 @@
                         </div>
                         
                     </form>
+                    {{ form.media }}
                 </div>
             </div>
 
