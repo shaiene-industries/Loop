@@ -4,6 +4,8 @@
         <!--Inserting this page's stylesheet-->
         {% load static %}
         <link rel="stylesheet" href=" {% static 'posts/articleDetail/css/style.css' %} "> 
+        <!-- Loading Filters-->
+        {% load filters %}
         <title>{{post.title}} | MyBlog</title>
         <div class="container-fluid">
             <div class="row">
@@ -13,7 +15,7 @@
                     </h1>
                     <hr>
                     <p>
-                        {{ post.body }}
+                        {{ post.body|formatted_markdown|safe }}
                     </p>
                     <a href="{% url 'blog:home' %}">
                         <button type="button" class="btn btn-outline-dark"> Go to Home </button>
