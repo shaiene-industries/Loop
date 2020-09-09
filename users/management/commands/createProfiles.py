@@ -10,16 +10,17 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        profileCount = Profile.objects.count()
-        userCount = User.objects.count()
-        if userCount > profileCount:
-            users = User.objects.all()
-            profiles = Profile.objects.all()
+        pCount = Profile.objects.count()
+        uCount = User.objects.count()
+        print("Profiles: {} Users: {}".format(pCount,uCount))
+        if uCount > pCount:
+            users = User.objects.exclude(profile__user__in=User.objects.all())
             for user in users:
-                if user.pk not in profiles.filter("user_id"):
-                    profile = Profile()
-                    profile.bio = ""
-                    profiçe.user_id = user.pk
+                print("Creating profile for user: "+str(user))
+                profile = Profile()
+                profile.bio = ""
+                profile.user = user
+                profile.save()
 
         else:
-            print("The number of users and profiles is the same",file=self.sys.stdout)
+            print("The number of users and profiles is the same")

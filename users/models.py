@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(help_text="Please use 100 or less characters", blank=True, max_length=100)
+    bio = models.TextField(help_text="Please use 100 or less characters", blank=True,null=True, max_length=100)
     
 # These functions will create and update an instance of profile, after an User instance is saved
 @receiver(post_save, sender=User) # Using a SIGNAl from user to profile
