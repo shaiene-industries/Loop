@@ -1,2 +1,4 @@
 **/__pycache__/
-
+launch.json
+.gitignore
+db.sqlite3
