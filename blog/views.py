@@ -6,7 +6,7 @@ from .forms import PostForm
 
 
 # Class views
-class HomeView(ListView):
+class PostsView(ListView):
     model = Post
     template_name = "posts/home.html"
 
@@ -25,8 +25,8 @@ class NewPostView(LoginRequiredMixin, CreateView):
 
 
 #Function Views
-def base(request):
-    return render(request,'base/base.html',{})
+# def base(request):
+#     return render(request,'base/base.html',{})
 
 # def home(request):
 #     return render(request,'home.html', {})

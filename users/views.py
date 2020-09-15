@@ -29,7 +29,7 @@ def loginUser(request):
             user = authenticate(username=name, password=passwd)
             login(request, user)
             print("Login Successful")
-            redirect('home')
+            redirect('posts')
         print("Form is not valid")
     else:
         # Redirecting to login page using Login Form
