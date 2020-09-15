@@ -12,3 +12,5 @@ main/__pycache__/urls.cpython-38.pyc
 main/__pycache__/wsgi.cpython-38.pyc
 main/__pycache__/__init__.cpython-38.pyc
 launch.json
+.gitignore
+db.sqlite3
