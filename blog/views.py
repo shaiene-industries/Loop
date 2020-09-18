@@ -21,7 +21,10 @@ class NewPostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     login_url = 'accounts/login/'
 
-
+    # Overriding form_valid to associate the user to the post
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 #Function Views
