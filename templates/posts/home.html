@@ -2,16 +2,16 @@
 {% block title %}Posts{% endblock %}
 {% block content%}
 
-        <!--Inserting this page's stylesheet-->
+        {% comment %} Inserting this page's stylesheet {% endcomment %}
         {% load static %}
         
-        <!-- Loading Filters-->
+        {% comment %} Loading Filters {% endcomment %}
         {% load filters %}
 
         <link rel="stylesheet" href=" {% static 'posts/home/css/style.css' %} "> 
         <h1 class="title" >Posts</h1>
         <a href="{% url 'blog:postForm'%}">
-            <button class="btn btn-sm btn-outline-light" > Write a new post </button>
+            <button class="btn btn-sm btn-outline-primary"> + </button>
         </a>
         <div class="container-fluid p-0 m-0">
             <div class="row">                    
