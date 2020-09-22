@@ -9,6 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = MarkdownxField()
 
+    # This defines how the instance will be called if printed
     def __str__(self):
         return self.title + " | by " + str(self.author)
 
