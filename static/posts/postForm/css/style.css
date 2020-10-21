@@ -2,3 +2,27 @@
 div .card{
     height:100%; width:auto;
 }
+ #div_id_body > label{
+    display: none;
+}
+/* Styling the preview ------------------------------------------------------------------------*/
+.markdownx-preview{
+    color: white;
+    border-radius: 5px;
+    border: solid white 1px;
+    min-height: 245px;
+    padding: 2%;
+}
+.markdownx-preview > *{
+    margin: 0px;
+}
+
+/* Styling the pills to the Body --------------------------------------------------------------*/
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #17a2b8;
+    color: white;
+}
+.nav-pills .nav-link{
+    color: gray;
+}
+

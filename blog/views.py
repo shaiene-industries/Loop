@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import PostForm
+
 
 # Class views
-class HomeView(ListView):
+class PostsView(ListView):
     model = Post
     template_name = "posts/home.html"
 
@@ -11,18 +14,22 @@ class ArticleView(DetailView):
     model = Post
     template_name = "posts/articleDetail.html"
 
-class NewPostView(CreateView):
+
+class NewPostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/postForm.html'
-    fields = dict.fromkeys(["title","author","body"])
-    def addPost():
-        pass
+    form_class = PostForm
+    login_url = 'accounts/login/'
 
-def base(request):
-    return render(request,'base/base.html',{})
+    # Overriding form_valid to associate the user to the post
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-# Create your views here.
 
-# Function Views
+#Function Views
+# def base(request):
+#     return render(request,'base/base.html',{})
+
 # def home(request):
 #     return render(request,'home.html', {})

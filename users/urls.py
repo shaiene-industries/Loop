@@ -6,4 +6,5 @@ app_name = 'users'
 
 urlpatterns = [
     path('create',CreateUser.as_view(), name='create'),
+    path('login',views.loginUser, name='login'),
 ]

@@ -1,17 +1,41 @@
 {% extends 'base/base.html' %}
+{% block title %}Add Post | Minael's Blog{% endblock %}
+{% load crispy_forms_tags %}
+
+
 {% block content %}
-    <!--Inserting this page's stylesheet-->
+    {% comment %} Inserting this page's stylesheet {% endcomment %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'posts/postForm/css/style.css' %}"> 
+    {% comment %} <script src="{% static 'posts/postForm/js/main.js' %}"></script> {% endcomment %}
     <div class="row">
         <div class="col">
             <div class="card text-white bg-dark mb-3">
-                <h1 class="card-header"> Write a new post </h1>
+                <h1 class="card-header"> Write a cool post </h1>
                 <div class="card-body">
-                    <form method="GET">
-                        {{ form.as_p }}
-                        <input type="submit" value="Save">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.title.label_tag }}
+                                    {{ form.title }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                            {{form.body|as_crispy_field}}
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class='col d-flex flex-row-reverse'>
+                                <button class="btn btn-info btn-lg">Save</button>
+                            <div>
+                        </div>
+                        
                     </form>
+                    {{ form.media }}
                 </div>
             </div>
 

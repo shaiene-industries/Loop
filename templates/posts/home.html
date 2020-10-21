@@ -2,14 +2,18 @@
 {% block title %}Posts{% endblock %}
 {% block content%}
 
-        <!--Inserting this page's stylesheet-->
+        {% comment %} Inserting this page's stylesheet {% endcomment %}
         {% load static %}
+        
+        {% comment %} Loading Filters {% endcomment %}
+        {% load filters %}
+
         <link rel="stylesheet" href=" {% static 'posts/home/css/style.css' %} "> 
         <h1 class="title" >Posts</h1>
         <a href="{% url 'blog:postForm'%}">
-            <button class="btn btn-sm btn-outline-light" > Write a new post </button>
+            <button class="btn btn-sm btn-outline-primary"> + </button>
         </a>
-        <div class="container-fluid">
+        <div class="container-fluid p-0 m-0">
             <div class="row">                    
                     {% for currentPost in object_list %}  
                         <div class="col-sm-6 coluna">
@@ -22,7 +26,7 @@
                                         by {{currentPost.author}}
                                     </h6>
                                     <p class="card-text">
-                                        {{ currentPost.body }}
+                                        {{ currentPost.body|formatted_markdown|safe  }}
                                     </p>
                                 </div>
                             </div>

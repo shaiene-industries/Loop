@@ -32,31 +32,27 @@
                         <a class="nav-link" href="{% url 'index:index'%}">Home</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'blog:home'%}">Posts</a>
+                        <a class="nav-link" href="{% url 'blog:posts'%}">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:base' %}">Base</a>
+                        <a class="nav-link" href="{% url 'index:base' %}">Base</a>
                     </li>            
                 </ul>
             </div>
         </nav>
         <!-- Main -->
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-2">
-                </div>
+            <div class="row justify-content-center">
                 <div class="col-sm-8">            
         {% block content %}
 
         {% endblock %}
                 </div>
-                <div class="col-sm-2">
-                </div>
             </div>
         </div>
         <div class="push"></div>
         <!-- Footer -->
-        <footer class="footer mt-auto py-3">
+        <footer class="footer py-3">
             <div class="container">
                 <span class="text-muted">Developed by <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> and <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
             </div>
