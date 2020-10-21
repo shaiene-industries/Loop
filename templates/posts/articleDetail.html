@@ -23,6 +23,9 @@
                     <a href="{% url 'blog:articleUpdate' post.pk %}">
                         <button type="button" class="btn btn-outline-dark"> Edit </button>
                     </a>
+                    <a href="{% url 'blog:articleDelete' post.pk %}">
+                        <button type="button" class="btn btn-outline-dark"> Remove </button>
+                    </a>
                 </div>
             </div>
         </div>
