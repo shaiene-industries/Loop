@@ -1,5 +1,5 @@
 {% extends 'base/base.html'%}
-{% block title %}Posts{% endblock %}
+{% block title %}Products{% endblock %}
 {% block content%}
 
         {% comment %} Inserting this page's stylesheet {% endcomment %}
@@ -8,26 +8,25 @@
         {% comment %} Loading Filters {% endcomment %}
         {% load filters %}
 
-        <link rel="stylesheet" href=" {% static 'posts/home/css/style.css' %} "> 
-        <h1 class="title" >Posts</h1>
-        <a href="{% url 'blog:postForm'%}">
+        <link rel="stylesheet" href=" {% static 'products/home/css/style.css' %} "> 
+        <h1 class="title" >Products</h1>
+        <a href="{% url 'products:addProduct' %}">
             <button class="btn btn-sm btn-outline-primary"> + </button>
         </a>
         <div class="container-fluid p-0 m-0">
             <div class="row">                    
-                    {% for currentPost in object_list %}  
+                    {% for product in object_list %}  
                         <div class="col-sm-6 coluna">
                             <div class="card text-white bg-dark mb-3">
                                 <h5 class="card-header" >
-                                    <a href="{% url 'blog:articleDetail' currentPost.pk %}" > <b> {{ currentPost.title }}</b> </a>
-                                    <a href="{% url 'blog:articleUpdate' currentPost.pk %}"> <p class="small" style="float:right">edit</p> </a>
+                                    <a href="{% url 'products:productDetail' product.pk %}" > <b> {{ product.name}}</b> </a>
                                 </h5>
                                 <div class="card-body">                               
                                     <h6 class="card-subtitle mb-2 text-muted">
-                                        by {{currentPost.author}}
+                                        {{product.category.get_category_display}}
                                     </h6>
                                     <p class="card-text">
-                                        {{ currentPost.body|formatted_markdown|safe  }}
+                                        {{ product.info|formatted_markdown|safe  }}
                                     </p>
                                 </div>
                             </div>
