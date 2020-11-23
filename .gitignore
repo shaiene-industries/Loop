@@ -14,3 +14,6 @@ main/__pycache__/__init__.cpython-38.pyc
 launch.json
 .gitignore
 db.sqlite3
+
+users/migrations
+products/migrations
