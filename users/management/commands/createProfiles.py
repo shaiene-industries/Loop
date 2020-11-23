@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
-from users.models import Profile
+from users.models import UserProfile
 
 class Command(BaseCommand):
     help = 'Links users with users profiles'
@@ -10,14 +10,14 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        pCount = Profile.objects.count()
+        pCount = UserProfile.objects.count()
         uCount = User.objects.count()
         print("Profiles: {} Users: {}".format(pCount,uCount))
         if uCount > pCount:
             users = User.objects.exclude(profile__user__in=User.objects.all())
             for user in users:
                 print("Creating profile for user: "+str(user))
-                profile = Profile()
+                profile = UserProfile()
                 profile.bio = ""
                 profile.user = user
                 profile.save()

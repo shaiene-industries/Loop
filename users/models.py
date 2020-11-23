@@ -4,12 +4,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
 
-class Profile(models.Model):
+class UserProfile(models.Model):
     """
     Extra user information
     """
-    full_name = models.CharField(verbose_name = "Nome completo",max_length=500)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField(null=True, blank=True)
     bio = models.TextField(help_text="Descreva-se com até 200 caracteres", blank=True,null=True, max_length=200)
 
 class ContactInfo(models.Model):
@@ -32,7 +32,7 @@ class ContactInfo(models.Model):
 @receiver(post_save, sender=User) # Using a SIGNAl from user to profile
 def createUserProfile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def saveUserProfile(sender, instance, **kwargs):
