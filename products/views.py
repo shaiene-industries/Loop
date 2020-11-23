@@ -1,30 +1,50 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Post
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Products
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import PostForm
+from .forms import *
+from django.urls import reverse_lazy
 
 
-# Class views
-class PostsView(ListView):
-    model = Post
-    template_name = "posts/home.html"
+def home(request):
+    return render(request,'products/index.html',{})
+    
+def base(request):
+    return render(request,'base/base.html',{})  
 
-class ArticleView(DetailView):
-    model = Post
-    template_name = "posts/articleDetail.html"
+class FeedView(ListView):
+    model = Products 
+    template_name = "products/feed.html"
 
+class ProductView(DetailView):
+    model = Products
+    template_name = "products/productDetail.html"
+    context_object_name = 'product'
 
-class NewPostView(LoginRequiredMixin, CreateView):
-    model = Post
-    template_name = 'posts/postForm.html'
-    form_class = PostForm
-    login_url = 'accounts/login/'
+class NewProductView(LoginRequiredMixin, CreateView):
+    model = Products
+    template_name = 'products/addProduct.html'
+    form_class = ProductForm
+    login_url = reverse_lazy('users:login')
+    
 
     # Overriding form_valid to associate the user to the post
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
+
+class UpdateProductView(LoginRequiredMixin, UpdateView):
+    model = Products
+    template_name = 'products/addProduct.html'
+    login_url = reverse_lazy('users:login')
+    fields = ['name','info']
+    
+
+class DeleteProductView(LoginRequiredMixin, DeleteView):
+    model = Products
+    login_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('products:feed')
+
 
 
 #Function Views

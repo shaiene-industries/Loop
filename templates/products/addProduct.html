@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}Add Post | Minael's Blog{% endblock %}
+{% block title %}Add Product | Minael's Blog{% endblock %}
 {% load crispy_forms_tags %}
 
 
@@ -11,23 +11,26 @@
     <div class="row">
         <div class="col">
             <div class="card text-white bg-dark mb-3">
-                <h1 class="card-header"> Write a cool post </h1>
+                <h1 class="card-header"> Add a cool product </h1>
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {{ form.title.label_tag }}
-                                    {{ form.title }}
+                        {% for field in form %}
+                            <div class="row">
+                            {% if field == 'info' %}
+                                <div class="col">
+                                {{form.body|as_crispy_field}}
                                 </div>
+                            {% else %}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                    </div>
+                                </div>
+                            {% endif %}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                            {{form.body|as_crispy_field}}
-                            </div>    
-                        </div>
+                        {% endfor %}
                         <div class="row">
                             <div class='col d-flex flex-row-reverse'>
                                 <button class="btn btn-info btn-lg">Save</button>

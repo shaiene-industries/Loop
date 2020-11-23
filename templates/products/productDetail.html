@@ -1,0 +1,32 @@
+{% extends 'base/base.html'%}
+{% block title %} Loop{% endblock %}
+{% block content %}
+        <!--Inserting this page's stylesheet-->
+        {% load static %}
+        <link rel="stylesheet" href=" {% static 'products/articleDetail/css/style.css' %} "> 
+        <!-- Loading Filters-->
+        {% load filters %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col post-body">
+                    <h1>
+                        {{product.name}}
+                    </h1>
+                    <hr>
+                    <p>
+                        {{ product.info|formatted_markdown|safe }}
+                    </p>
+            
+                    <a href="{% url 'products:productUpdate' product.pk %}">
+                        <button type="button" class="btn btn-outline-dark"> Edit </button>
+                    </a>
+
+                    <a href="{% url 'products:feed' %}">
+                        <button type="button" class="btn btn-outline-dark"> Return</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
