@@ -28,12 +28,9 @@ class ContactInfo(models.Model):
     type = models.CharField(max_length=3, choices=CONTACT_TYPE_CHOICES, help_text="Nome do meio de contato")
     info = models.CharField(max_length=50)
 
-# These functions will create and update an instance of profile, after an User instance is saved
+# Create and update an instance of profile, after an User instance is saved
 @receiver(post_save, sender=User) # Using a SIGNAl from user to profile
 def createUserProfile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def saveUserProfile(sender, instance, **kwargs):
     instance.profile.save()
