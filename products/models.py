@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from markdownx.models import MarkdownxField
 
+def user_directory_path(instance, filename):
+    """
+    File will be uploaded to MEDIA_ROOT/users/user_<id>/<filename>
+    """
+    return 'users/user_{0}/{1}'.format(instance.user.id, filename)
 class Products(models.Model):
     """
     Modelo dos produtos que serão trocados no site.
@@ -23,7 +28,7 @@ class Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
     info = MarkdownxField()
-
+    image = models.ImageField(upload_to=user_directory_path)
     class Meta:
         app_label = 'products'
 
