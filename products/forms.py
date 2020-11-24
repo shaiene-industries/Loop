@@ -5,10 +5,15 @@ from markdownx.fields import MarkdownxFormField
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
-        fields = ("name", "category","info")
+        fields = ("name", "category", "info")
         
         widgets = {
             'body': MarkdownxFormField(),
         }
 
+        labels = {
+            "name": "Nome",
+            "category": "Categoria",
+            "info": u"Descrição",
+        }
         

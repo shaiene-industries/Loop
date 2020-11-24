@@ -12,17 +12,19 @@
                     <h1>
                         {{product.name}}
                     </h1>
-                    <hr>
+                    <br>
+                    <img style="height:20vh; width:auto;" src="{% static "products/productDetail/img/loop-gray.png"%}">
+                    <br>
                     <p>
                         {{ product.info|formatted_markdown|safe }}
                     </p>
             
                     <a href="{% url 'products:productUpdate' product.pk %}">
-                        <button type="button" class="btn btn-outline-dark"> Edit </button>
+                        <button type="button" class="btn btn-outline-info">Editar</button>
                     </a>
 
                     <a href="{% url 'products:feed' %}">
-                        <button type="button" class="btn btn-outline-dark"> Return</button>
+                        <button type="button" class="btn btn-outline-info">Retornar</button>
                     </a>
                 </div>
             </div>

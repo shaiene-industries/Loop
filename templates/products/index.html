@@ -1,10 +1,21 @@
 {% extends 'base/base.html'%}
 {% block content %}
-
+{% load static %}
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="title">I miss Min... </h1>
+                <h1 class="title">Bem vindo a sua página, {{ request.user }}</h1>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <img style="height:20vh; width:auto; border-radius: 33px;" src="{% static "products/productDetail/img/loop-gray.png"%}">
+                    </div>
+                    <div style="border-left: solid whitesmoke 2px;" class="col">
+                        <h2 style="color:whitesmoke">Bio</h2>
+                        <p style="color:lightgray">{{request.user.profile.bio}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
