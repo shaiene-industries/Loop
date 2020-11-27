@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'markdownx',
     'django.forms',
+    'hitcount',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -132,3 +134,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static"),
 ]
+#limite de hits (views) por ip, 0 = ilimitado
+HITCOUNT_HITS_PER_IP_LIMIT = 0

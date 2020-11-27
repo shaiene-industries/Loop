@@ -4,7 +4,7 @@ from .models import Products
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
-
+from hitcount.views import HitCountDetailView
 
 def home(request):
     return render(request,'products/index.html',{})
@@ -15,11 +15,14 @@ def base(request):
 class FeedView(ListView):
     model = Products 
     template_name = "products/feed.html"
+    ordering = ['hit_count_generic']
+   
 
-class ProductView(DetailView):
+class ProductView(HitCountDetailView):
     model = Products
     template_name = "products/productDetail.html"
     context_object_name = 'product'
+    count_hit = True
 
 class NewProductView(LoginRequiredMixin, CreateView):
     model = Products

@@ -1,4 +1,5 @@
 {% extends 'base/base.html'%}
+{% load hitcount_tags %}
 {% block title %}Products{% endblock %}
 {% block content%}
 
@@ -21,13 +22,16 @@
                                 <h5 class="card-header" >
                                     <a href="{% url 'products:productDetail' product.pk %}" > <b> {{ product.name}}</b> </a>
                                 </h5>
-                                <div class="card-body">                               
+                                <div class="card-body">
+                                    <p>Views: {% get_hit_count for product %}</p>
+                               
                                     <h6 class="card-subtitle mb-2 text-muted">
                                         {{product.category.get_category_display}}
                                     </h6>
                                     <p class="card-text">
                                         {{ product.info|formatted_markdown|safe  }}
                                     </p>
+                                    
                                 </div>
                             </div>
                         </div>

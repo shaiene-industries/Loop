@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from markdownx.models import MarkdownxField
+from hitcount.models import HitCountMixin, HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 class Products(models.Model):
     """
@@ -23,6 +25,7 @@ class Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
     info = MarkdownxField()
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',related_query_name='hit_count_generic_relation')
 
     class Meta:
         app_label = 'products'

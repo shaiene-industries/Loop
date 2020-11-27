@@ -1,4 +1,5 @@
 {% extends 'base/base.html'%}
+{% load hitcount_tags %}
 {% block title %} Loop{% endblock %}
 {% block content %}
         <!--Inserting this page's stylesheet-->
@@ -12,9 +13,13 @@
                     <h1>
                         {{product.name}}
                     </h1>
+                    <p>Views: {% get_hit_count for product %}</p>
+
                     <hr>
+                    
                     <p>
                         {{ product.info|formatted_markdown|safe }}
+                        
                     </p>
             
                     <a href="{% url 'products:productUpdate' product.pk %}">

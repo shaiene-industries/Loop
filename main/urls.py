@@ -8,5 +8,7 @@ urlpatterns = [
     path('', include('products.urls',namespace='products') ),
     url(r'^markdownx/', include(markdownx)),
     path('users/', include('users.urls',namespace='users')),
+    path('hitcount/', include(('hitcount.urls', 'hitcount'), namespace='hitcount')),
+    
 ]
 
