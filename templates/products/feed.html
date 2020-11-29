@@ -23,7 +23,7 @@
                                     <a href="{% url 'products:productDetail' product.pk %}" > <b> {{ product.name}}</b> </a>
                                 </h5>
                                 <div class="card-body">
-                                    <p>Visto {% get_hit_count for product %} vezes</p>
+                                    <p>{% get_hit_count for product %} usuários viram</p>
                                
                                     <h6 class="card-subtitle mb-2 text-muted">
                                         {{product.category.get_category_display}}

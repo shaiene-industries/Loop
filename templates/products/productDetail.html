@@ -18,7 +18,7 @@
                         {{ product.info|formatted_markdown|safe }}
                         
                     </p>
-                    <br>Visto {% get_hit_count for product %} vezes</p>
+                    <br>{% get_hit_count for product %} usuários viram</p>
                     <a href="{% url 'products:productUpdate' product.pk %}">
                         <button type="button" class="btn btn-outline-info">Editar</button>
                     </a>
