@@ -3,20 +3,30 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
         <div class="col">
             <div class="card text-white bg-dark mb-3">
                 <h1 class="card-header"> Login </h1>
                 <div class="card-body">
                     <form method="POST">
-                    {% csrf_token %}
+                        {% csrf_token %}
                         <div class="row">
+                            {% for field in form %}
                             <div class="col-md-6">
-                            {{ form.username|as_crispy_field }}
+                                {{ field.label_tag}}
+                                {{ field}}
                             </div>
-                            <div class="col-md-6">
-                            {{ form.password|as_crispy_field }}
-                            </div>
+                            {% endfor %}
                             <div class='col d-flex flex-row-reverse'>
                                 <button class="btn  btn-info btn-lg login-btn">Login</button>
                             <div>
@@ -24,8 +34,6 @@
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>   
 {% endblock %}
