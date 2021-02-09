@@ -29,8 +29,46 @@
     </head>
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
+        <nav class="navbar navbar-expand-lg navbar-dark p-1">
+            <div class="container-fluid">
+                <div class="col-auto">
+                    <div class="navbar-brand">
+                        <a href='{% url "products:home" %}' >
+                            <img id="logo" src="{% static "base/img/logo_min_pure.svg"%}">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-auto mx-auto">
+                    <form class="input-group search--form">
+                        <input id="search--input" placeholder="Oque você vai trocar hoje?" aria-label="Pesquisar produtos" aria-describedby="search-icon">
+                        <span class="input-group-text" id="search-icon">
+                            <i class="gg-search"></i>
+                        </span>  
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main -->
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-sm-8">            
+        {% block content %}
+
+        {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="push"></div>
+        <!-- Footer -->
+        <footer class="footer py-3">
+            <div class="container">
+                <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
+            </div>
+        </footer>
+  </body>
+</html>
+            {% comment %} <a class="navbar-brand" href="#">
                 <img style="height:5vh; width:auto;" src="{% static "base/img/loop.png"%}">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -53,29 +91,4 @@
                         <a class="nav-link" href="{% url 'products:base' %}">Base</a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-        <!-- Main -->
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-sm-8">            
-        {% block content %}
-
-        {% endblock %}
-                </div>
-            </div>
-        </div>
-        <div class="push"></div>
-        <!-- Footer -->
-        <footer class="footer py-3">
-            <div class="container">
-                <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
-            </div>
-        </footer>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>    
-  </body>
-</html>
+            </div> {% endcomment %}
