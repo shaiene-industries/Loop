@@ -1,4 +1,13 @@
 /* Tags */
+:root{
+    --main-yellow: #fff748;
+    --main-purple: #5e13a4; 
+    --main-deep-purple: #231b32;
+    font-family: 'Source Sans Pro', sans-serif;
+} 
+*{
+}
+
 html{
     position: relative;
     min-height: 100%;
@@ -19,14 +28,14 @@ nav{
     color: white;
     text-align: center;
 }
-form label{
-    font-size: x-large;
-    color: white;
+.form-label{
+    font-size: small;
 }
-
-/* Tags within tags */
 nav img{
     width: 40px;
+}
+.navbar{
+    background-color: var(--main-deep-purple);
 }
 
 /* Classes */
@@ -47,4 +56,20 @@ nav img{
 .push{
     height: 100%;
 }
-/* Classes with tags */
+#logo{
+    width: auto;
+    height: clamp(2.5rem,5vw,2.7rem);
+}
+#search--input{
+    width: 50vw;
+    border-radius: 0.6rem 0 0 0.6rem;
+    padding: .3rem;
+    border: solid var(--main-purple) .5px;
+    background-color: var(--main-deep-purple);
+    color: white;
+    font-weight: 800;
+    transition: all 0.2s ease-in-out;
+}
+.search--form:hover{
+    filter: drop-shadow(0 2px 5px #000);
+}
