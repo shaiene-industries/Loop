@@ -2,6 +2,7 @@
 <html lang="pt-br">
     <head>
         {% load static %}
+        {% load sass_tags %}
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,13 +11,14 @@
                 Loop
             {% endblock %}
         </title>
+    
         <!-- Bootstrap-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
         
         <!--Custom CSS-->
         <link rel="stylesheet" href="{% static "base/css/reset.css" %}">
-        <link rel="stylesheet" href="{% static "base/css/style.css" %}">
+        <link rel="stylesheet" href="{% sass_src 'base/css/style.scss' %}" type="text/css" />
 
         <!--Font-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,19 +28,26 @@
         <link href='https://css.gg/css' rel='stylesheet'>
         <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
         <link href='https://cdn.jsdelivr.net/npm/css.gg/icons/all.css' rel='stylesheet'>
+
+
+        <!--This page Css-->
+        {% block custom_css %}{% endblock%}
     </head>
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark p-1">
+        {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark p-1 pb-2">
             <div class="container-fluid">
                 <div class="col-auto">
                     <div class="navbar-brand">
                         <a href='{% url "products:home" %}' >
-                            <img id="logo" src="{% static "base/img/logo_min_pure.svg"%}">
+                            <img id="logo_l" class="d-sm-inline d-none" src="{% static 'base/img/logo_l.svg'%}"/
+                            ><img id="logo_infinite" src="{% static 'base/img/logo_infinite.svg'%}"/
+                            ><img id="logo_p" class="d-sm-inline d-none" src="{% static 'base/img/logo_p.svg'%}"/>
                         </a>
                     </div>
                 </div>
-                <div class="col-auto mx-auto">
+                <div class="col-sm-auto mx-sm-auto">
                     <form class="input-group search--form">
                         <input id="search--input" placeholder="Oque você vai trocar hoje?" aria-label="Pesquisar produtos" aria-describedby="search-icon">
                         <span class="input-group-text" id="search-icon">
@@ -46,13 +55,28 @@
                         </span>  
                     </form>
                 </div>
+                <div class="col-auto">
+                    <div class="collapse navbar-collapse">
+                        {% block user_info %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'users:signup'%}">Criar Conta</a>
+                            </li>
+                            <li class="nav-item border-start">
+                                <a class="nav-link" href="{% url 'users:login'%}">Logar</a>
+                            </li>
+                        </ul>
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
         </nav>
+        {% endblock %}
         
         <!-- Main -->
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-sm-8">            
+        <div class="container-fluid" id="page-container" >
+            <div class="row justify-content-center h-100">
+                <div class="col-sm-8 my-auto">            
         {% block content %}
 
         {% endblock %}
@@ -68,27 +92,3 @@
         </footer>
   </body>
 </html>
-            {% comment %} <a class="navbar-brand" href="#">
-                <img style="height:5vh; width:auto;" src="{% static "base/img/loop.png"%}">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'products:home'%}">Minha Página</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'products:feed'%}">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Favoritos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'products:base' %}">Base</a>
-                    </li>
-                </ul>
-            </div> {% endcomment %}

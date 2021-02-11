@@ -1,8 +1,31 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{%  block custom_css%}
+<link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" />
+{% endblock %}
+
+{% block navbar %}{% endblock %}
 {% block content %}
-<h1 class="title">Create your user!</h1>
-<form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-</form>
+<div class="loop-card">
+	<div class="loop-card--header">
+		<h1 class="loop-card--title">Crie uma conta</h1>
+	</div>
+	<div class="card-body">
+		<form method="post">
+			{% csrf_token %}
+			<div class="container">
+				<div class="row row-cols-2 g-2">
+					{% for field in form%}
+						<div class="col form-floating">
+							{{field}}
+							<label for="{{ field.id_for_label }}">{{field.label}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 {% endblock content %}

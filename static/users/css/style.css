@@ -91,4 +91,23 @@ img[id^="logo"] {
   height: 100vh;
   margin-top: 1%; }
 
+.loop-card--header {
+  position: relative;
+  color: whitesmoke; }
+  .loop-card--header .loop-card--title {
+    font-size: 2.5rem;
+    padding: 0.6rem;
+    background-color: var(--main-purple);
+    max-width: max-content;
+    position: inherit;
+    top: -13px;
+    left: 1vw; }
+
+.loop-card {
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50px;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(130deg, var(--main-yellow) 20%, #b52bd0 80.07%, var(--main-purple) 90.05%); }
+
 /*# sourceMappingURL=style.css.map */
