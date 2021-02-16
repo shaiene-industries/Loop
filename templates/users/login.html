@@ -1,11 +1,35 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{%  block custom_css%}
+<link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" />
+{% endblock %}
+
 {% block content %}
-
-<h1 class="title">Login</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Login">
-    </form>
-
+<div class="col-sm-8 mb-auto mt-4"> 
+    <div class="loop-card">
+        <div class="loop-card--header">
+            <h1 class="loop-card--title">Login</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="row row-cols-1 g-2 justify-content-center">
+                        {% for field in form%}
+                            <div class="col form-floating" style="postion:relative;">
+                                {{field}}
+                                <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                            </div>
+                        {% endfor %}
+                        <div class="col-6 d-grid">
+                            <button class="btn button-submit" type="submit">Entrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}
