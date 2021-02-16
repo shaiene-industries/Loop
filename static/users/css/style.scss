@@ -2,7 +2,7 @@
 
 .loop-card--header{
     position: relative;
-    color: whitesmoke;
+    color: var(--theme-font);
 
     .loop-card--title {
         font-size: 2.5rem;
@@ -12,6 +12,7 @@
         position: inherit;
         top: -13px;
         left: 1vw;
+        font-weight: lighter;
     }
 }
 
@@ -20,5 +21,38 @@
     border-style: solid;
     border-radius: 50px;
     border-image-slice: 1;
-    border-image-source: linear-gradient(130deg,var(--main-yellow) 20%,#b52bd0 80.07%,var(--main-purple) 90.05%);;
+    border-image-source: linear-gradient(130deg,var(--main-yellow) 20%,#5d0960 80.07%,var(--main-purple) 90.05%);;
+}
+
+.form-control, .form-control:focus{ 
+    border: none;
+    background-color: var(--theme-bg);
+    color: var(--theme-font)
+}
+.form-control:focus, .btn:focus{
+    box-shadow: 0px 0px 0px 5px rgba(var(--main-purple-rgb),0.3);
+}
+label{
+    color: var(--theme-font);  
+}
+.button-info{
+    position: absolute;
+    color: var(--main-yellow);
+    top: 0;
+    right: 0;
+    z-index: 99;
+    height: 100%;
+    font-size: x-large;
+    padding: 1rem;
+    text-decoration: none;
+    &:hover{
+        color: var(--main-yellow);
+    }
+}
+.button-submit{
+    background-color: var(--main-purple);
+    color: var(--theme-font) !important;
+    &:hover{
+        background-color: var(--main-deep-purple);
+    }
 }
