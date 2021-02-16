@@ -10,6 +10,10 @@
     font-family: 'Source Sans Pro', sans-serif;
 } 
 
+*::selection{
+    background: var(--main-purple);
+    color: var(--theme-font)
+}
 html{
     position: relative;
     min-height: 100%;
