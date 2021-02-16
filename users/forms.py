@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import widgets
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 def bootstrap_format(fields : dict, float=False):    
     """
@@ -35,20 +36,27 @@ def bootstrap_format(fields : dict, float=False):
             continue
     return fields
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label="Username", max_length=150, required=True)
-    password = forms.CharField(label="Password", max_length=128, required=True, widget=forms.PasswordInput)
+class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         widgets = {
             'password': forms.PasswordInput()
         }
         fields = ['username','password']
+    
+    def __init__(self, request=None, *args, **kwargs):
+        self.request = request
+        self.user_cache = None
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.fields = bootstrap_format(self.fields,True)
+
+        
+
 
 class CreateUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['password','username','email']
+        fields = ['email','username', 'password']
 
     def __init__(self,*args,**kwargs):
         super(CreateUserForm, self).__init__(*args, **kwargs)
