@@ -57,6 +57,9 @@ class CreateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email','username', 'password']
+        widgets = {
+            'password': forms.PasswordInput()
+        }
 
     def __init__(self,*args,**kwargs):
         super(CreateUserForm, self).__init__(*args, **kwargs)
@@ -64,7 +67,3 @@ class CreateUserForm(forms.ModelForm):
         self.fields['username'].help_text = 'Pode conter letras, números e @/./+/-/_ apenas.'
         self.fields['password'].help_text = 'Minímo de 8 dígitos. Não se esqueça de incluir números, \
             letras MAIÚSCULAS, minúsculas e caracteres especiais -/_/@/+/-.'
-
-    def clean(self):
-       for field, value in self.cleaned_data.items():
-           self.cleaned_data['field'] = value.lower()
