@@ -24,9 +24,7 @@
 								<label for="{{ field.id_for_label }}">{{field.label}}</label>
 								{% if field.help_text %}
 									<a class="button-info" role="button" title="{{field.help_text}}" 
-									data-bs-toggle="tooltip" 
-									data-bs-placement="right"
-									data-bs-container="body">
+									rel="tooltip">
 										?
 									</a>
 								{% endif %}
