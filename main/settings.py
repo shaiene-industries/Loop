@@ -25,7 +25,7 @@ SECRET_KEY = '&tbtdr(vt!zcj)s3zdnfkryk1ynrjeneq9!at(ppolr1d$4qt_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*' # ATENÇÃO!!! PALEATIVO PARA PODER ACESSAR COM O IP NÃO LOCALHOST. NÃO MANTER FUTURAMENTE
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'markdownx',
     'django.forms',
+    'sass_processor'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -127,8 +128,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static"),
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+)
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
