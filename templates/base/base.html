@@ -35,10 +35,13 @@
         <link href='https://unpkg.com/css.gg/icons/all.css' rel='stylesheet'>
         <link href='https://cdn.jsdelivr.net/npm/css.gg/icons/all.css' rel='stylesheet'>
 
+        <!--Tooltips-->
+        <link rel="stylesheet" href="{% static 'plugins/tooltip/tooltip.css' %}">
+        <script type="text/javascript" src="{% static 'plugins/tooltip/tooltip.js' %}"></script>
 
-        <!--This page Css-->
+        <!--Custom page Css-->
         {% block custom_css %}{% endblock%}
-         <!--This page Css-->
+         <!--Custom page js-->
         {% block custom_js %}{% endblock%}
         
     </head>
