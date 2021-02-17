@@ -2,9 +2,16 @@
 :root {
   --main-yellow: #fff748;
   --main-purple: #5e13a4;
+  --main-purple-rgb: 94, 19, 164;
   --main-deep-purple: #1c1628;
   --main-deepest-purple: #0e0a17;
+  --theme-bg: rgb(29, 29, 29);
+  --theme-font: whitesmoke;
   font-family: 'Source Sans Pro', sans-serif; }
+
+*::selection {
+  background: var(--main-purple);
+  color: var(--theme-font); }
 
 html {
   position: relative;
@@ -30,7 +37,9 @@ nav img {
   width: 40px; }
 
 .navbar {
-  background-color: var(--main-deep-purple); }
+  background-color: var(--main-deep-purple);
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000; }
 
 /* Classes */
 .block {
@@ -47,7 +56,7 @@ nav img {
 /*Logo do Loop*/
 img[id^="logo"] {
   width: auto;
-  height: clamp(2.5rem, 5vw, 2.7rem); }
+  height: 2rem; }
 
 @keyframes cool_rotate {
   from {
@@ -62,21 +71,19 @@ img[id^="logo"] {
 
 /* Override do Bootstrap*/
 .nav-link {
-  font-size: large;
-  font-weight: 700; }
+  font-size: large; }
 
 .border-start {
   border-left: 1px solid var(--main-purple) !important; }
 
 /* Barra de Pesquisa*/
 #search--input {
-  width: 50vw;
+  width: calc(100% - 37px);
   border-radius: 0.6rem 0 0 0.6rem;
   padding: .3rem;
   border: solid var(--main-purple) 0.5px;
   background-color: var(--main-deep-purple);
   color: white;
-  font-weight: 800;
   transition: all 0.2s ease-in-out; }
 
 @media (max-width: 358px) {
