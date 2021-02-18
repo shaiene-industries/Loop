@@ -37,13 +37,6 @@ def bootstrap_format(fields : dict, float=False):
     return fields
 
 class LoginForm(AuthenticationForm):
-    class Meta:
-        model = User
-        widgets = {
-            'password': forms.PasswordInput()
-        }
-        fields = ['username','password']
-    
     def __init__(self, request=None, *args, **kwargs):
         self.request = request
         self.user_cache = None
