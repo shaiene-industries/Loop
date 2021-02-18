@@ -64,5 +64,12 @@ class CreateUserForm(UserCreationForm):
         super(CreateUserForm, self).__init__(*args, **kwargs)
         self.fields = bootstrap_format(self.fields,True)
         self.fields['username'].help_text = 'Pode conter letras, números e @/./+/-/_ apenas.'
-        self.fields['password'].help_text = 'Minímo de 8 dígitos. Não se esqueça de incluir números, \
+        self.fields['password1'].help_text = 'Minímo de 8 dígitos. Não se esqueça de incluir números, \
             letras MAIÚSCULAS, minúsculas e caracteres especiais -/_/@/+/-.'
+        self.fields['password2'].help_text = 'Reescreva a senha anterior para confirmação'
+        self.fields['password1'].label = 'Senha'
+        self.fields['password2'].label = 'Confirmação da Senha'
+        self.fields['password1'].widget.attrs.update({
+            'minlength': '8',
+            'autocomplete': 'new-password',
+        })
