@@ -42,7 +42,13 @@ class LoginForm(AuthenticationForm):
         self.user_cache = None
         super(LoginForm, self).__init__(*args, **kwargs)
         self.fields = bootstrap_format(self.fields,True)
+        self.fields['username'].label = 'Nome de usuário'
+        self.fields['password'].label = 'Senha'
 
+        self.error_messages = {
+            'inactive': 'Essa conta esta inativa',
+            'invalid_login': 'Nome de usuário ou senha inválidos.'
+        }
         
 
 
