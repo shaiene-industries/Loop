@@ -8,11 +8,13 @@
     --theme-bg: rgb(29, 29, 29);
     --theme-font: whitesmoke;
     font-family: 'Source Sans Pro', sans-serif;
+    --danger-font: whitesmoke;
+    --danger-bg: #4d0b0b;
 } 
 
 *::selection{
     background: var(--main-purple);
-    color: var(--theme-font)
+    color: var(--theme-font);
 }
 html{
     position: relative;
@@ -76,6 +78,11 @@ img[id^="logo"]{
 }
 .border-start{
     border-left: 1px solid var(--main-purple) !important;
+}
+.alert-danger{
+    color: var(--danger-font);
+    background-color: var(--danger-bg);
+    border-color: black;
 }
 /* Barra de Pesquisa*/
 #search--input{
