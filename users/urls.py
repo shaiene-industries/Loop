@@ -1,11 +1,11 @@
-from django.urls import path 
-from . import views 
-from .views import CreateUser 
-from django.contrib.auth.views import LoginView
+from django.urls import path, re_path
+from .views import CreateUser, LoginUser, RedirectLogin, DetailUser
 
 app_name = 'users'
 
 urlpatterns = [
-    path('create',CreateUser.as_view(), name='create'),
-    path('accounts/login/', LoginView.as_view(template_name='auth/login.html'), name='login'),
+    path('registro',CreateUser.as_view(), name='signup'),
+    path('login/', LoginUser.as_view(), name='login'),
+    re_path(r'^minha_conta/(?P<pk>\w+)/$', DetailUser.as_view(), name="minha_conta"),
+    path('login/redirect',RedirectLogin.as_view(), name="login_redirect"),
 ]
