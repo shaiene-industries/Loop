@@ -36,6 +36,32 @@ class Products(models.Model):
     def get_absolute_url(self):
         return reverse('products:productDetail', kwargs={'pk': str(self.id)})
 
+    def get_badges(self) -> list:
+        """Retorna uma lista de com as informações de cada etiqueta do troco_por"""
+        cat_badge = {
+            # cat |   color   |  emoji 
+            'LVQ':("#d72c32","📚"),
+            'TEC':("#2f2695","💻"),
+            'CEE':("#28a6ae","🏠"),
+            'EEL':("#5eab16","⚽"),
+            'MBA':("#e85d91","👕"),
+            'FEM':("#8f5221","🛠"),
+            'BRI':("#881186","🤖"),
+            'PET':("#874ab0","🐶"),
+        }
+ 
+        badges = []
+        for cat in self.trocopor.all():
+            cat_face = cat_badge.get(cat.category)
+            badge = {'color':cat_face[0], 'icon':cat_face[1],'name':cat.get_category_display()}
+            
+            badges.append(badge)
+        return badges
+            
+
+
+
+        
     
     
 
