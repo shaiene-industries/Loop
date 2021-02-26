@@ -1,41 +1,61 @@
 {% extends 'base/base.html'%}
-{% block title %}Products{% endblock %}
+{% load static %}
+{% load filters %}
+{% load sass_tags %}
+
+{% block title %}Loop | trocas inteligentes{% endblock %}
+{% block custom_css %} <link rel="stylesheet" href=" {% sass_src 'products/home/css/style.scss' %} "> {% endblock %}
+
 {% block content%}
-
-        {% comment %} Inserting this page's stylesheet {% endcomment %}
-        {% load static %}
-        
-        {% comment %} Loading Filters {% endcomment %}
-        {% load filters %}
-
-        <link rel="stylesheet" href=" {% static 'products/home/css/style.css' %} "> 
-        <h1 class="title" >Produtos</h1>
-        <a href="{% url 'products:addProduct' %}">
-            <button class="btn btn-sm btn-outline-primary"> + </button>
-        </a>
-        <div class="container-fluid p-0 m-0">
-            <div class="row">                    
-                    {% for product in object_list %}  
-                        <div class="col-sm-6 coluna">
-                            <div class="card text-white bg-dark mb-3">
-                                <h5 class="card-header" >
-                                    <a href="{% url 'products:productDetail' product.pk %}" > <b> {{ product.name}}</b> </a>
-                                </h5>
-                                <div class="card-body">                               
-                                    <h6 class="card-subtitle mb-2 text-muted">
-                                        {{product.category.get_category_display}}
-                                    </h6>
-                                    <p class="card-text">
-                                        {{ product.info|formatted_markdown|safe  }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                    {% endfor %}
-
+<div class="col-sm-10">
+    <div class="container-fluid container-page p-4 pb-3">
+        <div class="row justify-content-between">
+            <div class="col-sm-7">
+                <h1 class="loop--title">Olha só oque têm disponível...</h1>
+                <div class="d-flex justify-content-end">
+                    <div class="flecha"></div>
+                </div>
+            </div>
+            <div class="col-sm d-flex justify-content-center align-items-center">
+                <a href="{% url 'products:addProduct' %}">
+                    <button class="btn btn-loopYellow">Tenho um produto pra trocar!</button>
+                </a>
             </div>
         </div>
+    <div class="container-fluid p-0">
+        <div class="row row-cols-md-2 g-4 row-cols-1 row-cols-md-2 justify-content-between">                    
+            {% for product in object_list %}  
+            <div class="col-lg-4 col-md-6 col-6">
+                <div class="card bg-dark text-white">                
+                    <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
+                    <div class="card-body">
+                        <div>
+                            <div class="pills">
+                                <div class="pill-group" role="button" title="Pelo que eu tenho interesse em trocar" 
+									rel="tooltip">
+                                    {% for badge in product.get_badges %}
+                                    <a href="#" class="badge rounded-pill me-1" style="background-color:{{badge.color}}" title="{{badge.name}}">
+                                        {{badge.icon}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a class="d-inline card-title" href="{% url 'products:productDetail' product.pk %}">
+                                <b>{{ product.name}}</b>
+                            </a>
+                            <h3 class="card-subtitle text-muted d-inline">
+                                {{product.get_category_display}}
+                            </h3>
+                        </div>
+                       <div class="card-text">
+                            <p class="card-text--hide">{{product.info|safe}}<p>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
