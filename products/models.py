@@ -23,6 +23,7 @@ class Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
     info = MarkdownxField()
+    trocopor = models.ManyToManyField("self", blank=True, symmetrical=False)
 
     class Meta:
         app_label = 'products'
@@ -35,14 +36,7 @@ class Products(models.Model):
 
     
     
-class TrocoPor(models.Model):
-    """
-    Modelo de relação muitos pra muitos da tabela Produto com ela mesma.
-    Delimita os exemplos de produtos (campo: exemplo) que poderiam ser trocados
-    pelo produto delimitado (campo: produto).
-    """
-    produto = models.ForeignKey('Products', on_delete=models.CASCADE, related_name='produto_id')
-    exemplo = models.ForeignKey('Products', on_delete=models.CASCADE, related_name='exemplo_id')
+
 
 
     
