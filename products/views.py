@@ -6,22 +6,20 @@ from .forms import *
 from django.urls import reverse_lazy
 
 
-def home(request):
-    return render(request,'products/index.html',{})
-    
-def base(request):
-    return render(request,'base/base.html',{})  
-
 class FeedView(ListView):
+    """Página Inicial, todos os produtos pela ordem mais recente"""
     model = Products 
     template_name = "products/feed.html"
+    queryset = Products.objects.all().order_by('data_criacao')
 
 class ProductView(DetailView):
+    """Página de algum produto especifico"""
     model = Products
     template_name = "products/productDetail.html"
     context_object_name = 'product'
 
 class NewProductView(LoginRequiredMixin, CreateView):
+    """Formulário pra cadastrar um novo produto"""
     model = Products
     template_name = 'products/addProduct.html'
     form_class = ProductForm
@@ -34,6 +32,7 @@ class NewProductView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class UpdateProductView(LoginRequiredMixin, UpdateView):
+    """Atualizando informações cadastrais de produto"""
     model = Products
     template_name = 'products/addProduct.html'
     login_url = reverse_lazy('users:login')
@@ -41,15 +40,10 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
     
 
 class DeleteProductView(LoginRequiredMixin, DeleteView):
+    """Página de deletar produto"""
     model = Products
     login_url = reverse_lazy('users:login')
     success_url = reverse_lazy('products:feed')
 
 
 
-#Function Views
-# def base(request):
-#     return render(request,'base/base.html',{})
-
-# def home(request):
-#     return render(request,'home.html', {})
