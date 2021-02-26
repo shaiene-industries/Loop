@@ -1,10 +1,174 @@
-/* Class */
-.coluna{
-    padding:2%;
-}
-.card{
-    height:100%; width:auto;
-}
-.card  a{
-    color: rgb(98, 180, 176);
-}
+@charset "UTF-8";
+/* Tags */
+:root {
+  --main-yellow: #fff748;
+  --main-purple: #5e13a4;
+  --main-purple-rgb: 94, 19, 164;
+  --main-deep-purple: #1c1628;
+  --main-deepest-purple: #0e0a17;
+  --theme-bg: rgb(29, 29, 29);
+  --theme-font: whitesmoke;
+  font-family: 'Source Sans Pro', sans-serif;
+  --danger-font: whitesmoke;
+  --danger-bg: #4d0b0b; }
+
+*::selection {
+  background: var(--main-purple);
+  color: var(--theme-font); }
+
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  background-color: var(--main-deepest-purple);
+  margin-bottom: 60px;
+  color: var(--theme-font); }
+
+.footer {
+  height: 60px;
+  background-color: #323435;
+  color: white;
+  text-align: center; }
+
+.form-label {
+  font-size: small; }
+
+nav img {
+  width: 40px; }
+
+.navbar {
+  background-color: var(--main-deep-purple);
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000; }
+
+/* Classes */
+.block {
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 8px outset #33393b;
+  background-color: #4f584c;
+  padding: 3%; }
+
+.push {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between; }
+
+/*Logo do Loop*/
+img[id^="logo"] {
+  width: auto;
+  height: 2rem; }
+
+@keyframes cool_rotate {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.navbar-brand:hover #logo_infinite {
+  animation-name: cool_rotate;
+  animation-duration: 1.6s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* Override do Bootstrap*/
+.nav-link {
+  font-size: large; }
+
+.border-start {
+  border-left: 1px solid var(--main-purple) !important; }
+
+.alert-danger {
+  color: var(--danger-font);
+  background-color: var(--danger-bg);
+  border-color: black; }
+
+/* Barra de Pesquisa*/
+#search--input {
+  width: calc(100% - 37px);
+  border-radius: 0.6rem 0 0 0.6rem;
+  padding: .3rem;
+  border: solid var(--main-purple) 0.5px;
+  background-color: var(--main-deep-purple);
+  color: white;
+  transition: all 0.2s ease-in-out; }
+
+@media (max-width: 358px) {
+  #search--input {
+    width: 80vw; } }
+
+#search--input:focus, #search--input:focus + #search-icon, .input-group:hover {
+  filter: drop-shadow(0 2px 5px #000); }
+
+/* Container do body*/
+#page-container {
+  height: 100vh;
+  margin-top: 1%; }
+
+/* Botões do Loop*/
+.btn-outline-loopYellow {
+  color: var(--main-yellow);
+  border: var(--main-yellow); }
+  .btn-outline-loopYellow:hover {
+    background-color: var(--main-yellow);
+    color: black; }
+  .btn-outline-loopYellow:active:focus, .btn-outline-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
+
+.btn-loopYellow {
+  color: black;
+  background-color: var(--main-yellow); }
+  .btn-loopYellow:hover {
+    background-color: #dada16; }
+  .btn-loopYellow:active:focus, .btn-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
+
+.container-page {
+  background-color: var(--main-deep-purple); }
+
+.loop--title {
+  font-size: 2.5rem;
+  padding: 0.6rem;
+  border-bottom: dashed 2px var(--main-purple);
+  font-weight: lighter; }
+
+.flecha {
+  width: 50px;
+  height: 50px;
+  border-right: dashed 2px var(--main-purple);
+  position: relative; }
+  .flecha:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: var(--main-yellow);
+    clip-path: polygon(50% 51%, 0 0, 100% 0);
+    border-radius: 0 0 0 0.25em;
+    position: absolute;
+    bottom: -13px;
+    right: -11px;
+    z-index: 999; }
+
+.pill-group {
+  background: var(--main-deep-purple);
+  border-radius: 50rem;
+  margin-bottom: 0.7rem; }
+  .pill-group > * {
+    font-size: medium; }
+
+.card-text--hide {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.card-title {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: var(--theme-font);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .card-title:hover {
+    color: var(--main-yellow); }
+
+/*# sourceMappingURL=style.css.map */

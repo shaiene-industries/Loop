@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Tags */
 :root {
   --main-yellow: #fff748;
@@ -21,7 +22,8 @@ html {
 
 body {
   background-color: var(--main-deepest-purple);
-  margin-bottom: 60px; }
+  margin-bottom: 60px;
+  color: var(--theme-font); }
 
 .footer {
   position: absolute;
@@ -53,7 +55,10 @@ nav img {
   padding: 3%; }
 
 .push {
-  height: 100%; }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between; }
 
 /*Logo do Loop*/
 img[id^="logo"] {
@@ -104,6 +109,24 @@ img[id^="logo"] {
 #page-container {
   height: 100vh;
   margin-top: 1%; }
+
+/* Botões do Loop*/
+.btn-outline-loopYellow {
+  color: var(--main-yellow);
+  border: var(--main-yellow); }
+  .btn-outline-loopYellow:hover {
+    background-color: var(--main-yellow);
+    color: black; }
+  .btn-outline-loopYellow:active:focus, .btn-outline-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
+
+.btn-loopYellow {
+  color: black;
+  background-color: var(--main-yellow); }
+  .btn-loopYellow:hover {
+    background-color: #dada16; }
+  .btn-loopYellow:active:focus, .btn-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
 
 .loop-card--header {
   position: relative;

@@ -1,0 +1,54 @@
+@import '../../../base/css/style.scss';
+
+.container-page{
+    background-color: var(--main-deep-purple);
+}
+
+.loop--title{
+    font-size: 2.5rem;
+    padding: 0.6rem;
+    border-bottom: dashed 2px  var(--main-purple);
+    font-weight: lighter;
+}
+.flecha{
+    width: 50px;
+    height: 50px;
+    border-right: dashed 2px  var(--main-purple);
+    position: relative;
+    &:after{
+        content: "";
+        width: 20px;
+        height: 20px;
+        background-color: var(--main-yellow);
+        clip-path: polygon(50% 51%, 0 0, 100% 0);
+        border-radius: 0 0 0 0.25em;
+        position: absolute;
+        bottom: -13px;
+        right: -11px;
+        z-index: 999;
+    }
+}
+.pill-group{
+    background: var(--main-deep-purple);
+    border-radius: 50rem;
+    margin-bottom: 0.7rem;
+    & > *{
+        font-size: medium;
+    }
+}
+
+.card-text--hide{
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-title{
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--theme-font);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover{
+        color: var(--main-yellow)
+    }
+}
+

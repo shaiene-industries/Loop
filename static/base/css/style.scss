@@ -23,11 +23,9 @@ html{
 body{
     background-color: var(--main-deepest-purple);
     margin-bottom: 60px;
+    color: var(--theme-font);
 }
 .footer{
-    position:absolute;
-    bottom: 0;
-    width: 100%;
     height: 60px;
     background-color: rgb(50, 52, 53);
     color: white;
@@ -55,7 +53,10 @@ nav img{
     padding: 3%;
 }
 .push{
-    height: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between
 }
 /*Logo do Loop*/
 img[id^="logo"]{
@@ -109,4 +110,26 @@ img[id^="logo"]{
 #page-container{
     height: 100vh;
     margin-top:1%;
+}
+/* Botões do Loop*/
+.btn-outline-loopYellow{
+    color: var(--main-yellow);
+    border: var(--main-yellow);
+    &:hover{
+        background-color: var(--main-yellow);
+        color: black;
+    }
+    &:active:focus, &:focus{
+        box-shadow: 0 0 0 .25rem #d1c816;
+    }
+}
+.btn-loopYellow{
+    color: black;
+    background-color: var(--main-yellow);
+    &:hover{
+        background-color: #dada16;
+    }
+    &:active:focus, &:focus{
+        box-shadow: 0 0 0 .25rem #d1c816;
+    }
 }
