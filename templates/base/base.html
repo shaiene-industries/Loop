@@ -89,19 +89,20 @@
         {% endblock %}
         
         <!-- Main -->
-        <div class="container-fluid" id="page-container" >
-            <div class="row justify-content-center h-100">           
-                {% block content %}
+        <div class="push">
+            <div class="container-fluid" id="page-container" >
+                <div class="row justify-content-center mb-3">           
+                    {% block content %}
 
-                {% endblock %}
+                    {% endblock %}
+                </div>
             </div>
+            <!-- Footer -->
+            <footer class="footer row py-3">
+                <div class="container">
+                    <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
+                </div>
+            </footer>
         </div>
-        <div class="push"></div>
-        <!-- Footer -->
-        <footer class="footer py-3">
-            <div class="container">
-                <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
-            </div>
-        </footer>
   </body>
 </html>
