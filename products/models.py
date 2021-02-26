@@ -24,6 +24,8 @@ class Products(models.Model):
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
     info = MarkdownxField()
     trocopor = models.ManyToManyField("self", blank=True, symmetrical=False)
+    data_criacao = models.DateTimeField(verbose_name=u"Adicionado em",auto_now_add=True, null=True)
+    data_modif = models.DateTimeField(verbose_name=u'Última Modificação',auto_now=True, null=True)
 
     class Meta:
         app_label = 'products'
