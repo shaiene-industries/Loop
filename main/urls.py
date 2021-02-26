@@ -6,7 +6,7 @@ from markdownx import urls as markdownx
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls',namespace='products') ),
-    url(r'^markdownx/', include(markdownx)),
     path('users/', include('users.urls',namespace='users')),
+    url(r'^markdownx/', include(markdownx)),
 ]
 
