@@ -31,7 +31,7 @@ class Products(models.Model):
         app_label = 'products'
 
     def __str__(self):
-        return self.name + " | by " + str(self.user.get_full_name())
+        return self.name+" | by "+str(self.user.get_full_name())
 
     def get_absolute_url(self):
         return reverse('products:productDetail', kwargs={'pk': str(self.id)})
@@ -58,10 +58,13 @@ class Products(models.Model):
             badges.append(badge)
         return badges
             
-
-
-
-        
+       
+def product_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'products/{0}/{1}'.format(instance.produto.id, filename)
+class Product_Image(models.Model):
+    produto = models.ForeignKey('Products', on_delete=models.CASCADE)
+    image = models.ImageField(null=True, upload_to=product_directory_path)
     
     
 

@@ -142,3 +142,9 @@ STATICFILES_FINDERS = (
     'sass_processor.finders.CssFinder',
 )
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+
+# Dynamic files (User uploaded images/files)
+# https://docs.djangoproject.com/en/3.1/topics/files/
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

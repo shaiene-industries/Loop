@@ -1,9 +1,14 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
 
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'users/{0}/profile/{1}'.format(instance.user.id, filename)
+    
 class Profile(models.Model):
     """
     Extra user information
@@ -11,9 +16,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=True, blank=True)
     bio = models.TextField(help_text="Descreva-se com até 200 caracteres", blank=True,null=True, max_length=200)
-
+    profile_image = models.ImageField(null=True, upload_to=user_directory_path)
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filenam
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
+
 class ContactInfo(models.Model):
     """
     Information about each contact method
