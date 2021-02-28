@@ -10,6 +10,8 @@ class FeedView(ListView):
     """Página Inicial, todos os produtos pela ordem mais recente"""
     model = Products 
     template_name = "products/feed.html"
+    context_object_name = 'products'
+    paginate_by = 10
     queryset = Products.objects.all().order_by('data_criacao')
 
 class ProductView(DetailView):
