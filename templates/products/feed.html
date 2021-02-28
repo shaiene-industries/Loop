@@ -5,6 +5,10 @@
 
 {% block title %}Loop | trocas inteligentes{% endblock %}
 {% block custom_css %} <link rel="stylesheet" href=" {% sass_src 'products/home/css/style.scss' %} "> {% endblock %}
+{% block custom_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js" integrity="sha512-m3kH21aSkKrGeoqdb7IP7rlu1VcQee5VrjLQepeSOp5M05Wl6HwqJ1Jwo14EHOuBg77pkAlBtQuVMPVeXzfueg==" crossorigin="anonymous"></script>{% endblock%}
+
 
 {% block content%}
 <div class="col-sm-10">
@@ -23,9 +27,9 @@
             </div>
         </div>
     <div class="container-fluid p-0">
-        <div class="row row-cols-md-2 g-4 row-cols-1 row-cols-md-2 justify-content-between">                    
-            {% for product in object_list %}  
-            <div class="col-lg-4 col-md-6 col-6">
+        <div class="row row-cols-md-2 g-4 row-cols-1 row-cols-md-2" id="products-container">                    
+            {% for product in products %}  
+            <div class="col-lg-4 col-md-6 col-6 products-item">
                 <div class="card bg-dark text-white">                
                     <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
                     <div class="card-body">
@@ -58,4 +62,23 @@
         </div>
     </div>
 </div>
+{% if page_obj.has_next %}
+    <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
+{% endif %}
+<div class="loading"></div>
+<script>
+    // Infinite scroll e imagem de carregando
+    var infinite = new Waypoint.Infinite({
+        element: $('#products-container'),
+        items: '.products-item',
+        onBeforePageLoad: function () {
+            $('.loading').fadeIn('fast');
+        },
+        onAfterPageLoad: function ($items) {
+            setTimeout(function(){
+                $('.loading').fadeOut('slow');
+            },1000)
+        }
+    });
+  </script>
 {% endblock %}
