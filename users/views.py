@@ -8,6 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 # Auth 
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,7 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # My Forms & Models
 from .forms import LoginForm, CreateUserForm
 from .models import Profile
-
 
 class CreateUser(CreateView):
     """ Criação (registro) de usuário """
@@ -32,9 +32,9 @@ class LoginUser(LoginView):
     authentication_form = LoginForm
 
 class DetailUser(DetailView, LoginRequiredMixin):
-    """" Página da minha conta do Usuário. Trabalha com o objeto Profile."""
+    """" Página da minha conta do Usuário. Trabalha com a classe User."""
     template_name = 'users/detail.html'
-    model = Profile
+    model = User
 
 class RedirectLogin(RedirectView):
     """ Redireciona para a página da minha conta após o login."""

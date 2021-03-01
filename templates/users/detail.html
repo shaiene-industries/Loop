@@ -3,9 +3,52 @@
 {% load sass_tags %}
 
 {%  block custom_css%}
-<link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" />
+{% comment %} <link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" /> {% endcomment %}
 {% endblock %}
 
 {% block content %}
-{{object}}
+
+<style>
+    .profile img {
+        border: .25rem solid var(--main-yellow);
+        border-radius: 50%;
+        object-fit: cover;
+        height: 15rem;
+        width: 15rem;
+    }
+
+    #bio {
+        white-space: nowrap; 
+        width: 100%;
+        height:50%; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+    }
+
+    .left-border{
+        border-left: .2rem solid white;
+    }
+</style>
+
+<div class="profile mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center">
+                    <img src="{{user.profile.profile_image.url}}">
+                </div>
+                <h1>Bio</h1>
+                <p>
+                    <div id="bio">{{user.profile.bio}}</div>
+                </p>
+            </div>
+            <div class="col-md-6 left-border">
+                <h2 id="username">Nome</h2>
+                <h3>{{user.username}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
