@@ -20,18 +20,40 @@
                     <div class="flecha"></div>
                 </div>
             </div>
-            <div class="col-sm d-flex justify-content-center align-items-center">
+            <div class="col-sm d-flex justify-content-center align-items-center my-sm-0 my-4">
                 <a href="{% url 'products:addProduct' %}">
                     <button class="btn btn-loopYellow">Tenho um produto pra trocar!</button>
                 </a>
             </div>
         </div>
     <div class="container-fluid p-0">
-        <div class="row row-cols-md-2 g-4 row-cols-1 row-cols-md-2" id="products-container">                    
+        <div class="row g-4 row-cols-md-2 row-cols-1" id="products-container">                    
             {% for product in products %}  
-            <div class="col-lg-4 col-md-6 col-6 products-item">
-                <div class="card bg-dark text-white">                
-                    <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
+            <div class="col-lg-4 col-sm-6 products-item">
+                <div class="card bg-dark text-white">  
+                    {% if product.product_image_set.exists %}
+                    <div id="product_img--carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for product_image in  product.product_image_set.all %}
+                            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                                <img src="{{product_image.image.url}}" class="card-img-top d-block" alt="Placeholder">
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <div class="carousel-control-prev" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </div>
+                        <div class="carousel-control-next" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </div>
+                    </div> 
+                    {% else %}
+                        <img src="{% static 'base/img/logo_placeholder.svg'%}" class="" alt="Placeholder">
+                    {% endif %}
+
+                                 
                     <div class="card-body">
                         <div>
                             <div class="pills">
