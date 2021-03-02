@@ -173,8 +173,8 @@ img[id^="logo"] {
     font-size: medium; }
 
 .carousel-item {
-  width: 304px;
-  height: 208px; }
+  width: 300px;
+  height: 200px; }
 
 .carousel-control-next, .carousel-control-prev {
   opacity: 1 !important; }
