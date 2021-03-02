@@ -5,7 +5,7 @@ from markdownx.models import MarkdownxField
 
 class Products(models.Model):
     """
-    Modelo dos produtos que serão trocados no site.
+    Model of the products to be exchanged.
     """
 
     CATEGORY_CHOICES = (
@@ -24,8 +24,8 @@ class Products(models.Model):
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
     info = MarkdownxField()
     trocopor = models.ManyToManyField("self", blank=True, symmetrical=False)
-    data_criacao = models.DateTimeField(verbose_name=u"Adicionado em",auto_now_add=True, null=True)
-    data_modif = models.DateTimeField(verbose_name=u'Última Modificação',auto_now=True, null=True)
+    created_at = models.DateTimeField(verbose_name=u"Adicionado em",auto_now_add=True, null=True)
+    modif_at = models.DateTimeField(verbose_name=u'Última Modificação',auto_now=True, null=True)
 
     class Meta:
         app_label = 'products'
@@ -37,7 +37,7 @@ class Products(models.Model):
         return reverse('products:productDetail', kwargs={'pk': str(self.id)})
 
     def get_badges(self) -> list:
-        """Retorna uma lista de com as informações de cada etiqueta do troco_por"""
+        """Return a list of informations about every badge in troco_por"""
         cat_badge = {
             # cat |   color   |  emoji 
             'LVQ':("#d72c32","📚"),
@@ -57,13 +57,14 @@ class Products(models.Model):
             
             badges.append(badge)
         return badges
+
             
        
 def product_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'products/{0}/{1}'.format(instance.produto.id, filename)
+    return 'products/{0}/{1}'.format(instance.product.id, filename)
 class Product_Image(models.Model):
-    produto = models.ForeignKey('Products', on_delete=models.CASCADE)
+    product = models.ForeignKey('Products', on_delete=models.CASCADE)
     image = models.ImageField(null=True, upload_to=product_directory_path)
     
     
