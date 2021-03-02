@@ -7,21 +7,21 @@ from django.urls import reverse_lazy
 
 
 class FeedView(ListView):
-    """Página Inicial, todos os produtos pela ordem mais recente"""
+    """Front page, products ordered by most recent"""
     model = Products 
     template_name = "products/feed.html"
     context_object_name = 'products'
-    paginate_by = 10
-    queryset = Products.objects.all().order_by('data_criacao')
+    paginate_by = 2
+    queryset = Products.objects.all().order_by('created_at')
 
 class ProductView(DetailView):
-    """Página de algum produto especifico"""
+    """Product detail page"""
     model = Products
     template_name = "products/productDetail.html"
     context_object_name = 'product'
 
 class NewProductView(LoginRequiredMixin, CreateView):
-    """Formulário pra cadastrar um novo produto"""
+    """Form to add new products"""
     model = Products
     template_name = 'products/addProduct.html'
     form_class = ProductForm
@@ -34,7 +34,7 @@ class NewProductView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class UpdateProductView(LoginRequiredMixin, UpdateView):
-    """Atualizando informações cadastrais de produto"""
+    """Updating product information"""
     model = Products
     template_name = 'products/addProduct.html'
     login_url = reverse_lazy('users:login')
@@ -43,6 +43,7 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
 
 class DeleteProductView(LoginRequiredMixin, DeleteView):
     """Página de deletar produto"""
+    """Delete a product"""
     model = Products
     login_url = reverse_lazy('users:login')
     success_url = reverse_lazy('products:feed')
