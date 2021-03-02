@@ -36,6 +36,18 @@
         font-size: medium;
     }
 }
+.carousel-item{
+    width: 304px;
+    height: 208px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	opacity: 1 !important;
+}
+
+.card-img-top{
+    width: 100%;
+}
 
 .card-text--hide{
     white-space: nowrap;  
