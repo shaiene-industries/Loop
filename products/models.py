@@ -34,7 +34,7 @@ class Products(models.Model):
         return self.name+" | by "+str(self.user.get_full_name())
 
     def get_absolute_url(self):
-        return reverse('products:productDetail', kwargs={'pk': str(self.id)})
+        return reverse('products:productDetail', kwargs={'user_pk':self.user.pk, 'pk': str(self.id)})
 
     def get_badges(self) -> list:
         """Return a list of informations about every badge in troco_por"""
