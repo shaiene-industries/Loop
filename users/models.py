@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-# Create your models here.
+from django.urls import reverse
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -20,6 +20,9 @@ class Profile(models.Model):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filenam
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse('users:minha_conta', kwargs={'pk':self.user.pk})
 
 class ContactInfo(models.Model):
     """
