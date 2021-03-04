@@ -8,7 +8,6 @@
   --main-deepest-purple: #0e0a17;
   --theme-bg: rgb(29, 29, 29);
   --theme-font: whitesmoke;
-  font-family: 'Source Sans Pro', sans-serif;
   --danger-font: whitesmoke;
   --danger-bg: #4d0b0b; }
 
@@ -23,13 +22,26 @@ html {
 body {
   background-color: var(--main-deepest-purple);
   margin-bottom: 60px;
+  font-family: 'Source Sans Pro', sans-serif;
   color: var(--theme-font); }
 
 .footer {
   height: 60px;
   background-color: #323435;
   color: white;
-  text-align: center; }
+  text-align: center;
+  display: none; }
+
+.text-muted {
+  font-size: 1rem; }
+
+.text-el {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.user-text {
+  word-break: break-all; }
 
 .form-label {
   font-size: small; }
@@ -138,5 +150,25 @@ img[id^="logo"] {
     background-color: #dada16; }
   .btn-loopYellow:active:focus, .btn-loopYellow:focus {
     box-shadow: 0 0 0 .25rem #d1c816; }
+
+.slick-dots li button::before {
+  color: white !important; }
+
+.slick-dots li.slick-active button::before {
+  color: white !important; }
+
+.loop-table--header {
+  padding: .7rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  background-color: var(--main-deepest-purple); }
+
+.loop-table--cell {
+  line-height: 3rem;
+  font-weight: 200; }
+
+.loop-table--row {
+  margin-bottom: 1rem;
+  border: dashed 1px var(--main-purple); }
 
 /*# sourceMappingURL=style.css.map */

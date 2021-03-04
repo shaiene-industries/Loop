@@ -4,11 +4,20 @@
     background-color: var(--main-deep-purple);
 }
 
-.loop--title{
-    font-size: 2.5rem;
+@mixin loop-headers(){
     padding: 0.6rem;
     border-bottom: dashed 2px  var(--main-purple);
     font-weight: lighter;
+}
+
+.loop--title{
+    @include loop-headers();
+    font-size: 2.5rem;
+    
+}
+.loop--subtitle{
+    @include loop-headers();
+    font-size: 1.5rem;
 }
 .flecha{
     width: 50px;
@@ -40,7 +49,6 @@
 .carousel-control-next, .carousel-control-prev {
 	opacity: 1 !important;
 }
-
 .card-img-top{
     width: 100%;
 }
