@@ -5,7 +5,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 
+
+def main_error_page(request, exception, template_name='403.html'):
+    """The permission denied (403) error page view"""
+    return render(
+        template_name,
+        { 'status_code':403, 'exception':exception }
+    )
 
 class FeedView(ListView):
     """Front page, products ordered by most recent"""
