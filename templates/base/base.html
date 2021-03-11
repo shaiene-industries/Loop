@@ -42,6 +42,11 @@
         <link rel="stylesheet" href="{% static 'plugins/tooltip/tooltip.css' %}">
         <script type="text/javascript" src="{% static 'plugins/tooltip/tooltip.js' %}"></script>
 
+        <!--Slick Carousel-->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>   
+
+
         <!--Custom page Css-->
         {% block custom_css %}{% endblock%}
 
@@ -103,7 +108,8 @@
             </div>
 
             <!--Custom page js-->
-            {% block custom_js_bottom %}{% endblock%}      
+            {% block custom_js_bottom %}{% endblock%}   
+            <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>   
 
             <!-- Footer -->
             <footer class="footer row py-3">
