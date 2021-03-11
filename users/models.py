@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -17,6 +18,8 @@ class Profile(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     bio = models.TextField(help_text="Descreva-se com até 200 caracteres", blank=True,null=True, max_length=200)
     profile_image = models.ImageField(null=True, upload_to=user_directory_path)
+    rank = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filenam
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
