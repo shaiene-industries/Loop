@@ -1,0 +1,20 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% load filters %}
+{% load sass_tags %}
+
+{% block title %}Loop{% endblock %}
+
+{% block content%}
+<div class="col">
+{{ form.media.css }}
+<form method="post">
+ {% csrf_token %}
+    {{form}}
+    <input type="submit" value="woww enviar"/>
+</form>
+{{ form.media.js }}
+</div>
+{% endblock %}
+
+

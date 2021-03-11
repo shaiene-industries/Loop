@@ -67,9 +67,23 @@ class Product_Image(models.Model):
     product = models.ForeignKey('Products', on_delete=models.CASCADE)
     image = models.ImageField(null=True, upload_to=product_directory_path)
     
-    
+class Troca(models.Model):
+    """
+    Model that stores information about an ongoin exchange
+    """
+    STATE_CHOICES = (
+        ('A','Troca aceita'),
+        ('R','Troca recusada'),
+        ('P','Troca pendente')
+    )
 
+    product_chosen = models.ForeignKey('Products',related_name="product_chosen" ,on_delete=models.CASCADE, null=False)
+    product_to_exchange = models.ForeignKey('Products',related_name="product_to_exchange" ,on_delete=models.CASCADE, null=False)
+    finished = models.BooleanField(default=False)
+    state = models.CharField(choices=STATE_CHOICES, default='P', max_length=1)
 
+    def __str__(self):
+        return self.product_chosen.name+" x "+str(self.product_to_exchange.name)
 
     
     
