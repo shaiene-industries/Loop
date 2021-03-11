@@ -26,6 +26,7 @@ class Products(models.Model):
     trocopor = models.ManyToManyField("self", blank=True, symmetrical=False)
     created_at = models.DateTimeField(verbose_name=u"Adicionado em",auto_now_add=True, null=True)
     modif_at = models.DateTimeField(verbose_name=u'Última Modificação',auto_now=True, null=True)
+    available = models.BooleanField(default=True)
 
     class Meta:
         app_label = 'products'
@@ -34,7 +35,7 @@ class Products(models.Model):
         return self.name+" | by "+str(self.user.get_full_name())
 
     def get_absolute_url(self):
-        return reverse('products:productDetail', kwargs={'user_pk':self.user.pk, 'pk': str(self.id)})
+        return reverse('products:detail', kwargs={'user_pk':self.user.pk, 'pk': str(self.id)})
 
     def get_badges(self) -> list:
         """Return a list of informations about every badge in troco_por"""

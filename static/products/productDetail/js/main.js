@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    $('#product_img--carousel').slick({
+    $('.product_img--carousel').slick({
         infinite: true,
         lazyLoad: 'progressive',
         slidesToScroll: 1,

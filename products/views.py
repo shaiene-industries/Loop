@@ -43,7 +43,6 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
     
 
 class DeleteProductView(LoginRequiredMixin, DeleteView):
-    """Página de deletar produto"""
     """Delete a product"""
     model = Products
     login_url = reverse_lazy('users:login')

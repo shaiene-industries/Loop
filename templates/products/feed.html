@@ -9,7 +9,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js" integrity="sha512-m3kH21aSkKrGeoqdb7IP7rlu1VcQee5VrjLQepeSOp5M05Wl6HwqJ1Jwo14EHOuBg77pkAlBtQuVMPVeXzfueg==" crossorigin="anonymous"></script>
 {% endblock%}
-
+{% block custom_js_bottom %}
+<script type="text/javascript" src="{% static 'products/home/js/main.js' %}"></script>
+{% endblock %}
 
 {% block content%}
 <div class="col-sm-10">
@@ -22,8 +24,8 @@
                 </div>
             </div>
             <div class="col-sm d-flex justify-content-center align-items-center my-sm-0 my-4">
-                <a href="{% url 'products:addProduct' %}">
-                    <button class="btn btn-loopYellow">Quero adicionar um produto pra troca!</button>
+                <a href="{% url 'products:add' %}">
+                    <button class="btn btn-loopYellow">Quero adicionar um produto pra trocar!</button>
                 </a>
             </div>
         </div>
@@ -32,27 +34,15 @@
             {% for product in products %}  
             <div class="col-lg-4 col-sm-6 products-item">
                 <div class="card bg-dark text-white">  
+                    <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
                     {% if product.product_image_set.exists %}
-                    <div id="product_img--carousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                        {% for product_image in  product.product_image_set.all %}
-                            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-                                <img src="{{product_image.image.url}}" class="card-img-top d-block" alt="Placeholder">
-                            </div>
-                        {% endfor %}
-                        </div>
-                        <div class="carousel-control-prev" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </div>
-                        <div class="carousel-control-next" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </div>
+                    <div id="product_img--carousel">
+                            <img src="{{product.product_image_set.first.image.url}}" class="card-img-top d-block" alt="Placeholder">
                     </div> 
                     {% else %}
                         <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
                     {% endif %}
+                    </a>
 
                                  
                     <div class="card-body">
@@ -67,7 +57,7 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            <a class="d-inline card-title" href="{% url 'products:productDetail' product.user.pk product.pk %}">
+                            <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
                                 <b>{{ product.name}}</b>
                             </a>
                             <h3 class="card-subtitle text-muted d-inline">
@@ -89,19 +79,4 @@
     <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
 {% endif %}
 <div class="loading"></div>
-<script>
-    // Infinite scroll e imagem de carregando
-    var infinite = new Waypoint.Infinite({
-        element: $('#products-container'),
-        items: '.products-item',
-        onBeforePageLoad: function () {
-            $('.loading').fadeIn('fast');
-        },
-        onAfterPageLoad: function ($items) {
-            setTimeout(function(){
-                $('.loading').fadeOut('slow');
-            },1000)
-        }
-    });
-  </script>
 {% endblock %}
