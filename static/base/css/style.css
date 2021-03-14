@@ -137,7 +137,7 @@ img[id^="logo"] {
 /* Botões do Loop*/
 .btn-outline-loopYellow {
   color: var(--main-yellow);
-  border: var(--main-yellow); }
+  border: solid 1px var(--main-yellow); }
   .btn-outline-loopYellow:hover {
     background-color: var(--main-yellow);
     color: black; }
