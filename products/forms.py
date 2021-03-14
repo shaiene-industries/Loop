@@ -1,9 +1,10 @@
+from itertools import chain
 from django import forms
 from django.forms.widgets import HiddenInput
 from .models import Products, Troca
 from markdownx.fields import MarkdownxFormField
 from utils.form_utils import *
-from django_select2.forms import Select2Widget
+from django_select2.forms import Select2Widget, Select2TagWidget
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -36,24 +37,16 @@ class ExchangeForm(forms.ModelForm):
         }
 
     def __init__(self,*args, **kwargs):
-        product_chosen = kwargs.pop('product_chosen',False) 
         user = kwargs.pop('user',False) 
-        super().__init__(*args, **kwargs)
-        if product_chosen:
-            self.fields['product_chosen'].initial = product_chosen
+        super(ExchangeForm, self).__init__(*args, **kwargs)
         if user:
-            troco_cat = [ troco.get('category') for troco in product_chosen.trocopor.values('category').distinct() ]
+            troco_cat = [ troco.get('category') for troco in self.initial['product_chosen'].trocopor.values('category').distinct() ]
             self.fields['product_to_exchange'].queryset = Products.objects.filter(user=user,category__in=troco_cat)
 
     def clean(self):
-        data =  super().clean()
-        print("uh lala")
-    
-    def save(self, commit=True):
-        troca = super(ExchangeForm, self).save(commit=commit)
-        if 'product_chosen' in self.changed_data:
-            self.fields[]
-        return troca
+        cleaned_data =  super(ExchangeForm, self).clean()
+        cleaned_data['product_chosen'] = self.initial['product_chosen']
+        return cleaned_data
 
     
 
