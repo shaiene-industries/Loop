@@ -3,17 +3,85 @@
 {% load filters %}
 {% load sass_tags %}
 
-{% block title %}Loop{% endblock %}
+{% block title %}Loop | Trocando: {{product_chosen.name}}{% endblock %}
+
+{% block custom_css %} 
+<link rel="stylesheet" href=" {% sass_src 'products/home/css/style.scss' %}">
+<link rel="stylesheet" href=" {% sass_src 'products/exchange/css/style.scss' %}">
+{{ form.media.css }}
+{% endblock %}
+
+{% block custom_js_bottom %}
+{{ form.media.js }}
+{% endblock %}
 
 {% block content%}
-<div class="col">
-{{ form.media.css }}
-<form method="post">
- {% csrf_token %}
-    {{form}}
-    <input type="submit" value="woww enviar"/>
-</form>
-{{ form.media.js }}
+<div class="saved-message">
+    <div>
+        <i class="gg-close-o" onclick="$('.saved-message').remove()"></i>
+        <span>
+            Pedido enviado com sucesso!
+        </span>
+    </div>
+</div>
+<div class="col-sm-10">
+    <div class="container-fluid container-page py-4 px-0 pb-3">
+        <div class="row mx-4 g-1">   
+            <div class="col-md-5">
+                <h1 class="loop--title-box user-text h-100">{{product_chosen.name}}</h1>
+            </div>
+            <div class="col-md-2 d-flex justify-content-center align-items-center">  
+                <img class="d-none d-md-block logo-infinite" src="{% static 'base/img/logo_min_exchange-x.svg'%}"/>
+                <img class="d-md-none d-block my-3 logo-infinite" src="{% static 'base/img/logo_min_exchange-y.svg'%}"/>
+            </div>
+            <div class="col-md-5">  
+                <h1 id="product_to_exchange--h1" class="h-100 loop--title-box user-text">Selecione um item...</h1>
+            </div>
+        </div>
+        <div class="row g-0 my-4">
+            <div class="col-12 col-text">  
+                <p class="border-left">
+                Selecione um de seus items abaixo para oferecer em troca de <b>{{product_chosen.name}}</b>, um notificação será enviada
+                para o dono do produto perguntando se ele aceita a troca. 
+                <br><br>
+                Caso ele confirme, você receberá um e-mail em
+                <b>{{request.user.email}}</b> com as informações de contato do dono do produto para vocês poderem conversarem e decidirem
+                como ocorrera a troca.
+                </p>  
+            </div>
+        </div>
+        <div class="row">
+            <form method="post" id="exchange-form">
+            {% csrf_token %}
+                {{form.product_chosen}}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 d-flex mb-md-0 mb-2 justify-content-md-center light-text">
+                            {{form.product_to_exchange.label_tag}}
+                        </div>
+                        <div class="col-md-6 select-2-col">
+                            {{form.product_to_exchange}}
+                        </div>
+                    </div>
+                    <div class="row my-md-5 my-3">
+                        <div class="col-md-6 col-10 d-grid mx-auto">
+                            <button type="submit" class="btn button-submit">Pedir Troca!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </div>
+    <script>
+        $('#id_product_to_exchange').change(function(){
+            var product_name = $('#id_product_to_exchange :selected').text()
+            if(product_name != '---------'){
+                $('#product_to_exchange--h1').html($('#id_product_to_exchange :selected').text())
+            }else{               
+                $('#product_to_exchange--h1').html('Selecione um item...')
+            }
+        })
+    </script>
 </div>
 {% endblock %}
 
