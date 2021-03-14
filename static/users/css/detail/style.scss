@@ -1,0 +1,54 @@
+@import '../../../base/css/style.scss';
+
+body{
+    color: #ccc;
+}
+
+.profile img {
+    border: .25rem solid var(--main-yellow);
+    border-radius: 50%;
+    object-fit: cover;
+    height: 15rem;
+    width: 15rem;
+}
+
+@media (min-width: 768px){
+    .left-border{
+        border-left: .2rem solid var(--theme-font);
+        padding-left: 3rem;
+        // margin-left: 3rem;
+    }
+}
+
+%transparent{
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #bbb
+}
+
+.transparent{
+    @extend %transparent;
+}
+
+.underline{
+    @extend %transparent;
+    border-bottom: .1rem solid #aaa !important;
+}
+
+.border-line{
+    @extend %transparent;
+    border: .1rem solid #aaa !important;
+    border-radius: .2rem;
+    padding: 2%;
+}
+
+#bio{
+    @extend %transparent;
+    white-space: nowrap; 
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3rem;
+    max-height: 7rem;
+}
