@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic.base import RedirectView
 # Generic Views
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView, UpdateView
 # Auth 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User 
@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # My Forms & Models
-from .forms import LoginForm, CreateUserForm
+from .forms import LoginForm, CreateUserForm, userAccount
 from .models import Profile
 
 class CreateUser(CreateView):
@@ -31,13 +31,40 @@ class LoginUser(LoginView):
     template_name ='users/login.html'
     authentication_form = LoginForm
 
-class DetailUser(DetailView, LoginRequiredMixin):
-    """" Página da minha conta do Usuário. Trabalha com a classe User."""
-    template_name = 'users/detail.html'
-    model = User
+@login_required
+def detail_user(request):
+    if(request.method == "POST"):
+        form = userAccount(request.POST, request.FILES)
+        if(form.is_valid()):
+            data = form.cleaned_data
+            user = request.user
+            profile = user.profile
+            passwd = data.get("password")
+            confirm_passwd = data.get("confirm_password")
+            
+            if(data.get("bio")): profile.bio = data["bio"]
+            if(data.get("date_of_birth")): profile.date_of_birth = data["date_of_birth"]
+            if(data.get("profile_image")): profile.profile_image = data["profile_image"]
+            
+            if(passwd and confirm_passwd and passwd == confirm_passwd):
+                user.set_password(passwd)
+            
+            profile.save()
+            user.save()
+
+    form = userAccount()
+
+    return render(
+        template_name= "users/detail.html",
+        request=request,
+        context={
+            "form":form,
+            "user":request.user,
+        }
+    )
 
 class RedirectLogin(RedirectView):
-    """ Redireciona para a página da minha conta após o login."""
+    """ Redirects to my account page, after login"""
     def dispatch(self, request, *args, **kwargs):
-        return HttpResponseRedirect(reverse('users:minha_conta',kwargs={'pk': request.user.profile.pk }))
+        return HttpResponseRedirect(reverse('users:my_account',kwargs={'pk': request.user.profile.pk }))
     
