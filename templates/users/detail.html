@@ -3,51 +3,106 @@
 {% load sass_tags %}
 
 {%  block custom_css%}
-{% comment %} <link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" /> {% endcomment %}
+<link rel="stylesheet" href="{% sass_src 'users/css/detail/style.scss' %}" type="text/css" />
+<script src="{% static 'users/js/detail/main.js' %}" type="text/javascript"></script>
 {% endblock %}
 
 {% block content %}
-
 <style>
-    .profile img {
-        border: .25rem solid var(--main-yellow);
-        border-radius: 50%;
-        object-fit: cover;
-        height: 15rem;
-        width: 15rem;
-    }
-
-    #bio {
-        white-space: nowrap; 
-        width: 100%;
-        height:50%; 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        
-    }
-
-    .left-border{
-        border-left: .2rem solid white;
+    h4{
+        margin-top: 1rem; 
     }
 </style>
-
 <div class="profile mt-4">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="d-flex justify-content-center">
-                    <img src="{{user.profile.profile_image.url}}">
+        <h2>Bem Vindo, {{user.username}}</h2>
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col d-flex justify-content-evenly justify-content-sm-end">
+                    <button class="btn btn-success d-none hidden-input align-items-center" 
+                        type="submit">
+                        {% comment %} <i class="gg-check"></i> {% endcomment %}
+                        Salvar
+                    </button>
+                    <button class="btn button-submit ms-3 align-items-center" type="button"
+                        onclick="toggleEdit()">
+                        {% comment %} <i class="gg-pen"></i> {% endcomment %}
+                        Editar
+                    </button>
                 </div>
-                <h1>Bio</h1>
-                <p>
-                    <div id="bio">{{user.profile.bio}}</div>
-                </p>
             </div>
-            <div class="col-md-6 left-border">
-                <h2 id="username">Nome</h2>
-                <h3>{{user.username}}</h3>
+            <div class="row">
+            
+            {% comment %} Left side {% endcomment %}
+                <div class="col-md-6">
+                
+                {% comment %} Profile Image {% endcomment %}
+                    <div class="d-flex justify-content-center mb-3">
+                        <img src="{{user.profile.profile_image.url}}">
+                    </div>
+                
+                {% comment %} Profile Image Selector{% endcomment %}                    
+                    <div class="d-none hidden-input">
+                        <h6>
+                            <label for="img-input">
+                                Escolha uma imagem de perfil
+                            </label> 
+                        </h6>
+                        <input style="color:#ccc" id="img-input" name="{{form.profile_image.name}}"
+                            type="file">
+                    </div>
+                
+                {% comment %} Bio {% endcomment %}
+                    <h1>Bio</h1>
+                    <textarea readonly id="bio" cols="30"
+                        class="editable transparent" name="bio"
+                        >{{user.profile.bio}}</textarea>
+                
+                </div>
+            {% comment %} Right Side {% endcomment %}
+                <div id="right-info" class="col-md-6 left-border">
+                    
+                {% comment %} Username {% endcomment %}
+                    <h4>
+                        <label for="name">Nome</label>
+                    </h4>
+                    <p id="name">{{user.username}}</p>
+                    
+                {% comment %} E-mail {% endcomment %}
+                    <h4>
+                        <label for="email">E-mail</label>
+                    </h4>
+                    <p id="email">{{user.email}}</p>
+                    
+                {% comment %} Change-password {% endcomment %}
+                    <div class="d-none hidden-input">
+                        <h4>
+                            <label for="password">Senha</label>
+                        </h4>
+                        <input id="password" name="{{form.password.name}}" 
+                            type="password" class="transparent"
+                            placeholder="Nova senha">
+                        <h4>
+                            <label for="confirm-password">Confirmar Senha</label>
+                        </h4>
+                        <input id="confirm-password" placeholder="Nova senha"
+                            name="{{form.confirm_password.name}}" 
+                            type="password" class="transparent" 
+                            >
+                    </div>
+
+                {% comment %} Date of birth {% endcomment %}
+                    <h4>
+                        <label for="date_of_birth">Data de Nascimento</label>
+                    </h4>
+                    <input readonly value="{{user.profile.date_of_birth | date:'Y-m-d'}}" 
+                        id="date_of_birth" type="date" class="editable transparent"
+                        name="{{form.date_of_birth.name}}">
+
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
