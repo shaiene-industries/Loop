@@ -21,7 +21,6 @@ html {
 
 body {
   background-color: var(--main-deepest-purple);
-  margin-bottom: 60px;
   font-family: 'Source Sans Pro', sans-serif;
   color: var(--theme-font); }
 
@@ -29,11 +28,10 @@ body {
   box-shadow: 0px 0px 0px 5px rgba(var(--main-purple-rgb), 0.3); }
 
 .footer {
-  height: 60px;
   background-color: #323435;
   color: white;
   text-align: center;
-  display: none; }
+  width: 100vw; }
 
 .text-muted {
   font-size: 1rem; }
