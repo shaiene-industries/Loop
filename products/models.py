@@ -32,7 +32,7 @@ class Products(models.Model):
         app_label = 'products'
 
     def __str__(self):
-        return self.name+" | by "+str(self.user.get_full_name())
+        return self.name
 
     def get_absolute_url(self):
         return reverse('products:detail', kwargs={'user_pk':self.user.pk, 'pk': str(self.id)})
