@@ -1,9 +1,0 @@
-/* Tags within tags */
-h1 span{
-    font-size: large;
-    margin-left: 5%;
-}
-a button{
-    color:rgb(134, 172, 119);
-    border: rgb(134, 172, 119) 3px;
-}

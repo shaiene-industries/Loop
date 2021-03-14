@@ -12,26 +12,40 @@
 
 .loop--title{
     @include loop-headers();
-    font-size: 2.5rem;
-    
+    font-size: 2.5rem;    
 }
 .loop--subtitle{
     @include loop-headers();
     font-size: 1.5rem;
 }
-.flecha{
+@mixin corpo-flecha{
     width: 50px;
     height: 50px;
-    border-right: dashed 2px  var(--main-purple);
     position: relative;
+}
+@mixin flecha-triangulo{
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 0 0 0 0.25em;
+    position: absolute;
+}
+@mixin flecha-esq{
+    clip-path: polygon(50% 0, 0 50%, 50% 100%);
+}
+@mixin flecha-dir{
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%);
+}
+@mixin flecha-final{
+    clip-path: polygon(50% 51%, 0 0, 100% 0);
+}
+.flecha{
+    @include corpo-flecha;
+    border-right: dashed 2px  var(--main-purple);
     &:after{
-        content: "";
-        width: 20px;
-        height: 20px;
+        @include flecha-final;
+        @include flecha-triangulo;
         background-color: var(--main-yellow);
-        clip-path: polygon(50% 51%, 0 0, 100% 0);
-        border-radius: 0 0 0 0.25em;
-        position: absolute;
         bottom: -13px;
         right: -11px;
         z-index: 999;

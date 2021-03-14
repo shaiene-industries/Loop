@@ -169,7 +169,8 @@ img[id^="logo"] {
     background-color: var(--main-deep-purple); }
   .modal .modal-body {
     background-color: var(--main-deepest-purple);
-    padding: 2rem; }
+    padding: 2rem;
+    word-break: break-word; }
 
 .btn-circle {
   font-weight: 800;

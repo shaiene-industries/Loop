@@ -183,6 +183,7 @@ img[id^="logo"]{
     & .modal-body{
         background-color: var(--main-deepest-purple);
         padding: 2rem;
+        word-break: break-word;
     }
 }
 .btn-circle{

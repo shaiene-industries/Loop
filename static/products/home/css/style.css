@@ -169,7 +169,8 @@ img[id^="logo"] {
     background-color: var(--main-deep-purple); }
   .modal .modal-body {
     background-color: var(--main-deepest-purple);
-    padding: 2rem; }
+    padding: 2rem;
+    word-break: break-word; }
 
 .btn-circle {
   font-weight: 800;
@@ -260,16 +261,16 @@ img[id^="logo"] {
 .flecha {
   width: 50px;
   height: 50px;
-  border-right: dashed 2px var(--main-purple);
-  position: relative; }
+  position: relative;
+  border-right: dashed 2px var(--main-purple); }
   .flecha:after {
+    clip-path: polygon(50% 51%, 0 0, 100% 0);
     content: "";
     width: 20px;
     height: 20px;
-    background-color: var(--main-yellow);
-    clip-path: polygon(50% 51%, 0 0, 100% 0);
     border-radius: 0 0 0 0.25em;
     position: absolute;
+    background-color: var(--main-yellow);
     bottom: -13px;
     right: -11px;
     z-index: 999; }
