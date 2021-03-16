@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{%  block custom_css%}
+<link rel="stylesheet" href="{% sass_src 'users/css/style.scss' %}" type="text/css" />
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block content %}
+<div class="col-sm-8 my-auto">
+	<div class="loop-card">
+		<div class="loop-card--header">
+			<h1 class="loop-card--title">Editar Perfil</h1>
+		</div>
+		<div class="card-body">
+			<form method="post">
+				{% csrf_token %}
+				<div class="container">
+					<div class="row row-cols-1 g-2 justify-content-center">
+						{% for field in form%}
+							<div class="col form-floating" style="postion:relative;">
+								{{field}}
+								<label for="{{ field.id_for_label }}">{{field.label}}</label>
+								{% if field.help_text %}
+									<a class="button-info" role="button" title="{{field.help_text}}"
+									rel="tooltip" href="password/">
+										?
+									</a>
+
+								{% endif %}
+							</div>
+						{% endfor %}
+						<div class="col-6 d-grid">
+							<button class="btn button-submit" type="submit">Salvar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="col-12 mt-2">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

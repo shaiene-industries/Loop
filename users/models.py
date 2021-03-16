@@ -8,7 +8,7 @@ from django.dispatch import receiver
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'users/{0}/profile/{1}'.format(instance.user.id, filename)
-    
+
 class Profile(models.Model):
     """
     Extra user information
@@ -20,6 +20,7 @@ class Profile(models.Model):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filenam
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
+
 
 class ContactInfo(models.Model):
     """

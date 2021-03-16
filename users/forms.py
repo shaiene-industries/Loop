@@ -1,9 +1,9 @@
 from django import forms
 from django.forms import widgets
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-
-def bootstrap_format(fields : dict, float=False):    
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm,UserChangeForm,PasswordChangeForm
+from .models import Profile
+def bootstrap_format(fields : dict, float=False):
     """
     Aplica a classe .form-control nos inputs e o tipo 'date' nos inputs de data
     """
@@ -18,7 +18,7 @@ def bootstrap_format(fields : dict, float=False):
         try:
             ### Formatação de inputs
             # form-control
-            if (fields[field].widget.input_type not in NON_FORM_CONTROL):        
+            if (fields[field].widget.input_type not in NON_FORM_CONTROL):
                 fields[field] = add_widget_attrs(fields[field], "form-control")
                 if float:
                     fields[field] = add_widget_attrs(fields[field], "placeholder", "placeholder")
@@ -32,7 +32,7 @@ def bootstrap_format(fields : dict, float=False):
             # Seta em selects
             if (fields[field].widget.input_type == 'select'):
                 fields[field] = add_widget_attrs(fields[field], "form-select")
-        except AttributeError:            
+        except AttributeError:
             continue
     return fields
 
@@ -49,7 +49,7 @@ class LoginForm(AuthenticationForm):
             'inactive': 'Essa conta esta inativa',
             'invalid_login': 'Nome de usuário ou senha inválidos.'
         }
-        
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -73,3 +73,38 @@ class CreateUserForm(UserCreationForm):
             'minlength': '8',
             'autocomplete': 'new-password',
         })
+class EditProfileForm(UserChangeForm):
+    """ editar nome de usuário """
+
+    class Meta:
+        model = User
+
+        fields = ('username',)
+        labels = {
+            'username': ('Nome de usuário'),
+        }
+    def __init__(self,*args,**kwargs):
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+        self.fields = bootstrap_format(self.fields,True)
+        self.fields['username'].help_text = 'Pode conter letras, números e @/./+/-/_ apenas.'
+
+class ChangePassForm(PasswordChangeForm):
+
+        class Meta:
+
+            model = Profile
+
+        def __init__(self,*args,**kwargs):
+                super(PasswordChangeForm, self).__init__(*args, **kwargs)
+                self.fields = bootstrap_format(self.fields,True)
+                self.fields['old_password'].help_text = 'Digite sua antiga senha'
+                self.fields['new_password1'].help_text = 'Minímo de 8 dígitos. Não se esqueça de incluir números, \
+                    letras MAIÚSCULAS, minúsculas e caracteres especiais -/_/@/+/-.'
+                self.fields['new_password2'].help_text = 'Reescreva a senha anterior para confirmação'
+                self.fields['old_password'].label = 'Senha antiga'
+                self.fields['new_password1'].label = 'Senha'
+                self.fields['new_password2'].label = 'Confirmação da Senha'
+                self.fields['new_password1'].widget.attrs.update({
+                    'minlength': '8',
+                    'autocomplete': 'new-password',
+                })
