@@ -249,19 +249,13 @@ img[id^="logo"]{
     }
 }
 .user-profile--img-wrapper{
-    width: 100px;
-    height: 100px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
+        border-radius: 50%;
+        display: flex;
     .user-profile--img{
-        // clip-path: circle(50%);
-        // width: clamp(65px,30%,80px);
-        display: inline;
-        // margin: 0 auto;
-        // margin-left: -25%; //centers the image
-        height: 120%;
-        width: auto;
+        object-fit: cover;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
     }
 }
 .user-profile--name{

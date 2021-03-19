@@ -19,7 +19,7 @@
                             <div class="row">
                             {% if field == 'info' %}
                                 <div class="col">
-                                {{form.body|as_crispy_field}}
+                                {{form.body}}
                                 </div>
                             {% else %}
                                 <div class="col-md-6">
@@ -31,12 +31,15 @@
                             {% endif %}
                             </div>
                         {% endfor %}
+                        {{product_formset}}
                         <div class="row">
                             <div class='col d-flex flex-row-reverse'>
                                 <button class="btn btn-info btn-lg">Salvar</button>
                             <div>
                         </div>
-                        
+<div style="width:50%">
+    <div id="cropper"></div>
+</div>                        
                     </form>
                     {{ form.media }}
                 </div>

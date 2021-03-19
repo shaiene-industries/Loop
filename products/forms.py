@@ -1,15 +1,17 @@
 from itertools import chain
 from django import forms
+from django.forms import widgets
+from django.forms.models import inlineformset_factory
 from django.forms.widgets import HiddenInput
-from .models import Products, Troca
+from .models import *
 from markdownx.fields import MarkdownxFormField
-from utils.form_utils import *
-from django_select2.forms import Select2Widget, Select2TagWidget
+from utils.form_utils import bootstrap_format
+from django_select2.forms import Select2Widget
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
-        fields = ("name", "category", "info")
+        fields = ("name", "category", "info", "trocopor")
         
         widgets = {
             'body': MarkdownxFormField(),
@@ -19,7 +21,11 @@ class ProductForm(forms.ModelForm):
             "name": "Nome",
             "category": "Categoria",
             "info": u"Descrição",
+            "product_image_set":u"Fotos"
         }
+        
+ProductInlineFormSet = inlineformset_factory(Products, Product_Image,fields=("image",),)
+
 
 
 class ExchangeForm(forms.ModelForm):
@@ -47,6 +53,9 @@ class ExchangeForm(forms.ModelForm):
         cleaned_data =  super(ExchangeForm, self).clean()
         cleaned_data['product_chosen'] = self.initial['product_chosen']
         return cleaned_data
+
+    # def save(self, commit=True):
+
 
     
 

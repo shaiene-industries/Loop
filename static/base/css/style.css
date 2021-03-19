@@ -215,15 +215,13 @@ img[id^="logo"] {
   color: var(--main-purple); }
 
 .user-profile--img-wrapper {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%; }
+  border-radius: 50%;
+  display: flex; }
   .user-profile--img-wrapper .user-profile--img {
-    display: inline;
-    height: 120%;
-    width: auto; }
+    object-fit: cover;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%; }
 
 .user-profile--name {
   font-size: 1.3rem;
