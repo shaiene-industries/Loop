@@ -32,14 +32,8 @@
         <div class="row g-0">
             <div class="container-fluid p-0">
                 <div class="row g-4 row-cols-md-2 row-cols-1" id="products-container">                    
-        <div class="row g-4 row-cols-md-2 row-cols-1" id="products-container">                    
-                <div class="row g-4 row-cols-md-2 row-cols-1" id="products-container">                    
-                    {% for product in products %}  
-            {% for product in products %}  
                     {% for product in products %}  
                     <div class="col-lg-4 col-sm-6 products-item">
-                        <div class="card bg-dark text-white">  
-                <div class="card bg-dark text-white">  
                         <div class="card bg-dark text-white">  
                             <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
                             {% if product.product_image_set.exists %}
