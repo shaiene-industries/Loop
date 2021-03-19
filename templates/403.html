@@ -18,7 +18,9 @@ h1{
             <h1>Algo de errado não está certo...</h1>
             <h2>{{exception}}</h2>
             <div class="col-auto">
+                <a href="{% url 'products:home'%}" onclick="window.history.go(-1); return false;">
                 <button class="btn btn-outline-loopYellow mt-5">Voltar pra página anterior?</button>
+                </a>
             </div>
         </div>
     </div>
