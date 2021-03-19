@@ -31,7 +31,26 @@ body {
   background-color: #323435;
   color: white;
   text-align: center;
-  width: 100vw; }
+  max-width: 100vw;
+  width: 100%;
+  margin: 0 !important; }
+
+/* Fallback de Imagem */
+.fallback-container {
+  background-image: url(/static/base/img/logo_placeholder.svg);
+  display: inline-block;
+  min-width: 400px;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.fallback {
+  min-width: 400px;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 .text-muted {
   font-size: 1rem; }
@@ -131,13 +150,14 @@ img[id^="logo"] {
 
 /* Container do body*/
 #page-container {
-  height: 100vh;
-  margin-top: 1%; }
+  height: 100%;
+  margin-top: 1rem;
+  min-height: calc(100vh - 58px - 96px - 1rem); }
 
 /* Botões do Loop*/
 .btn-outline-loopYellow {
   color: var(--main-yellow);
-  border: var(--main-yellow); }
+  border: solid 1px var(--main-yellow); }
   .btn-outline-loopYellow:hover {
     background-color: var(--main-yellow);
     color: black; }
@@ -331,7 +351,26 @@ body {
   background-color: #323435;
   color: white;
   text-align: center;
-  width: 100vw; }
+  max-width: 100vw;
+  width: 100%;
+  margin: 0 !important; }
+
+/* Fallback de Imagem */
+.fallback-container {
+  background-image: url(/static/base/img/logo_placeholder.svg);
+  display: inline-block;
+  min-width: 400px;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.fallback {
+  min-width: 400px;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 .text-muted {
   font-size: 1rem; }
@@ -431,13 +470,14 @@ img[id^="logo"] {
 
 /* Container do body*/
 #page-container {
-  height: 100vh;
-  margin-top: 1%; }
+  height: 100%;
+  margin-top: 1rem;
+  min-height: calc(100vh - 58px - 96px - 1rem); }
 
 /* Botões do Loop*/
 .btn-outline-loopYellow {
   color: var(--main-yellow);
-  border: var(--main-yellow); }
+  border: solid 1px var(--main-yellow); }
   .btn-outline-loopYellow:hover {
     background-color: var(--main-yellow);
     color: black; }
