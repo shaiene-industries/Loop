@@ -13,6 +13,8 @@ def bootstrap_format(fields : dict, float=False):
         try:
             ### Formatação de inputs
             # form-control
+            if(fields[field].widget.__module__ == 'markdownx.widgets'):
+                fields[field] = add_widget_attrs(fields[field], "form-control")
             if (fields[field].widget.input_type not in NON_FORM_CONTROL):        
                 fields[field] = add_widget_attrs(fields[field], "form-control")
                 if float:
