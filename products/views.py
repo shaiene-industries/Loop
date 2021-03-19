@@ -8,24 +8,25 @@ from .models import Products, Troca
 from .forms import *
 
 class FeedView(ListView):
-    """Front page, products ordered by most recent"""
-    model = Products 
-    template_name = "products/feed.html"
-    context_object_name = 'products'
-    paginate_by = 5
-    queryset = Products.objects.all().order_by('created_at')	
+	"""Front page, products ordered by most recent"""
+	model = Products 
+	template_name = "products/feed.html"
+	context_object_name = 'products'
+	paginate_by = 5
+	queryset = Products.objects.all().order_by('created_at')	
 
-    def get(self, request, *args, **kwargs):
-        user_query = kwargs.get('q')
-        queryset = self.get_queryset()
+	def get_queryset(self):
+		user_query = self.request.GET.get('q')
+		queryset = self.queryset
 
-        if(user_query):
-            description =  Q(info=user_query)
-            name =  Q(name=user_query)
-            username =  Q(user__username=user_query)
+		if(user_query):
+			description =  Q(info=user_query)
+			name =  Q(name=user_query)
+			username =  Q(user__username=user_query)
 
-            self.object_list = queryset.filter(description | name | username)
+			queryset = queryset.filter(description | name | username)
 
+		return queryset
 
 class ProductView(DetailView):
     """Product detail page"""

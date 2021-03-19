@@ -90,11 +90,13 @@
                     </div>
                     
                     <div class="col-md-6 mx-sm-auto order-md-2 order-3 mb-md-0 mb-2">
-                        <form class="input-group search--form" method="GET">
-                            <input id="search--input" placeholder="O que você vai trocar hoje?" aria-label="Pesquisar produtos" aria-describedby="search-icon">
-                            <span type="submit" class="input-group-text" id="search-icon">
-                                <i class="gg-search"></i>
-                            </span>  
+                        <form id="nav-search" class="input-group search--form" method="GET">
+                            <input id="search--input" placeholder="O que você vai trocar hoje?" 
+								name="q" aria-label="Pesquisar produtos" aria-describedby="search-icon">
+                            <span type="submit" class="input-group-text" id="search-icon" 
+								onclick="document.getElementById('form_id').submit()">
+								<i class="gg-search"></i>
+                            </span>
                         </form>
                     </div>
                     
