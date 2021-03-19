@@ -41,7 +41,12 @@
                         
                         {% comment %} Profile Image {% endcomment %}
                             <div class="d-flex justify-content-center mb-3">
-                                <img src="{{user.profile.profile_image.url}}">
+                                {% if user.profile.profile_image %}
+                                <img src="{{user.profile.profile_image.url}}"
+                                onerror="this.src='{% static 'base/img/logo_placeholder.svg'%}'">
+                                {% else %}
+                                <img src="{% static 'base/img/logo_placeholder.svg'%}">
+                                {% endif %}
                             </div>
                         
                         {% comment %} Profile Image Selector{% endcomment %}                    
