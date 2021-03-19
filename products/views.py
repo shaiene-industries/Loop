@@ -1,12 +1,11 @@
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-from .models import Products, Troca
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import *
-from django.urls import reverse_lazy
-from django.core.exceptions import PermissionDenied
 from django.db.models import Q
+from .models import Products, Troca
+from .forms import *
 
 class FeedView(ListView):
     """Front page, products ordered by most recent"""
@@ -14,7 +13,19 @@ class FeedView(ListView):
     template_name = "products/feed.html"
     context_object_name = 'products'
     paginate_by = 5
-    queryset = Products.objects.all().order_by('created_at')
+    queryset = Products.objects.all().order_by('created_at')	
+
+    def get(self, request, *args, **kwargs):
+        user_query = kwargs.get('q')
+        queryset = self.get_queryset()
+
+        if(user_query):
+            description =  Q(info=user_query)
+            name =  Q(name=user_query)
+            username =  Q(user__username=user_query)
+
+            self.object_list = queryset.filter(description | name | username)
+
 
 class ProductView(DetailView):
     """Product detail page"""
