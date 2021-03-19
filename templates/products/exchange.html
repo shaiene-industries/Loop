@@ -16,6 +16,8 @@
 {% endblock %}
 
 {% block content%}
+{% if saved %}
+
 <div class="saved-message">
     <div>
         <i class="gg-close-o" onclick="$('.saved-message').remove()"></i>
@@ -24,6 +26,7 @@
         </span>
     </div>
 </div>
+{% endif %}
 <div class="col-sm-10">
     <div class="container-fluid container-page py-4 px-0 pb-3">
         <div class="row mx-4 g-1">   
