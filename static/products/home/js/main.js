@@ -11,14 +11,3 @@
         },1000)
     }
 });
-
-//Carousel Slick
-$(document).ready(function(){
-    $('#product_img--carousel').slick({
-        infinite: true,
-        lazyLoad: 'progressive',
-        slidesToScroll: 1,
-        adaptiveHeight: true,
-        dots: true,
-    });
-});
