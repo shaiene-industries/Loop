@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Tags */
 :root {
   --main-yellow: #fff748;
@@ -7,7 +8,6 @@
   --main-deepest-purple: #0e0a17;
   --theme-bg: rgb(29, 29, 29);
   --theme-font: whitesmoke;
-  font-family: 'Source Sans Pro', sans-serif;
   --danger-font: whitesmoke;
   --danger-bg: #4d0b0b; }
 
@@ -21,16 +21,38 @@ html {
 
 body {
   background-color: var(--main-deepest-purple);
-  margin-bottom: 60px; }
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--theme-font); }
+
+.btn:focus {
+  box-shadow: 0px 0px 0px 5px rgba(var(--main-purple-rgb), 0.3); }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
   background-color: #323435;
   color: white;
-  text-align: center; }
+  text-align: center;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0 !important; }
+
+/* Fallback de Imagem */
+.fallback {
+  min-width: 400px;
+  min-height: 400px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.text-muted {
+  font-size: 1rem; }
+
+.text-el {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.user-text {
+  word-break: break-all; }
 
 .form-label {
   font-size: small; }
@@ -53,7 +75,10 @@ nav img {
   padding: 3%; }
 
 .push {
-  height: 100%; }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between; }
 
 /*Logo do Loop*/
 img[id^="logo"] {
@@ -69,6 +94,20 @@ img[id^="logo"] {
 .navbar-brand:hover #logo_infinite {
   animation-name: cool_rotate;
   animation-duration: 1.6s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* Animação de carregamento*/
+.loading {
+  content: url(/static/base/img/logo_infinite.svg);
+  display: none;
+  width: 10rem;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50vw;
+  transform: translateX(-48%);
+  filter: drop-shadow(1px 3px 2px black);
+  animation: 1.5s cool_rotate infinite;
   animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 /* Override do Bootstrap*/
@@ -125,7 +164,117 @@ img[id^="logo"] {
     background-color: var(--main-deep-purple); }
 
 button > i {
-  display: inline-block !important; }
+  display: inline-block !important;
+  height: 100%;
+  margin-top: 1rem;
+  min-height: calc(100vh - 58px - 96px - 1rem); }
+
+/* Botões do Loop*/
+.btn-outline-loopYellow {
+  color: var(--main-yellow);
+  border: solid 1px var(--main-yellow); }
+  .btn-outline-loopYellow:hover {
+    background-color: var(--main-yellow);
+    color: black; }
+  .btn-outline-loopYellow:active:focus, .btn-outline-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
+
+.btn-loopYellow {
+  color: black;
+  background-color: var(--main-yellow); }
+  .btn-loopYellow:hover {
+    background-color: #dada16; }
+  .btn-loopYellow:active:focus, .btn-loopYellow:focus {
+    box-shadow: 0 0 0 .25rem #d1c816; }
+
+/* Overriding Bootstrap modal default styling*/
+.modal {
+  font-family: 'Source Sans Pro', sans-serif; }
+  .modal div {
+    border: none; }
+  .modal .modal-header h1 {
+    font-weight: 200; }
+  .modal .btnClose {
+    color: var(--theme-font);
+    background: none;
+    border: none; }
+  .modal .modal-content {
+    background-color: var(--main-deep-purple); }
+  .modal .modal-body {
+    background-color: var(--main-deepest-purple);
+    padding: 2rem;
+    word-break: break-word; }
+
+.btn-circle {
+  font-weight: 800;
+  font-size: 1rem;
+  background-color: var(--main-purple);
+  min-width: 30px;
+  max-width: 120px;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border-style: none;
+  color: white;
+  border-radius: 100%;
+  overflow: none;
+  text-align: center;
+  padding: 0; }
+  .btn-circle:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 100%; }
+  .btn-circle span {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 90%; }
+
+.user-profile:hover .user-profile--img {
+  filter: grayscale(100%); }
+
+.user-profile:hover .user-profile--name {
+  font-size: 1.5rem;
+  color: var(--main-purple); }
+
+.user-profile--img-wrapper {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%; }
+  .user-profile--img-wrapper .user-profile--img {
+    display: inline;
+    height: 120%;
+    width: auto; }
+
+.user-profile--name {
+  font-size: 1.3rem;
+  color: var(--theme-font);
+  text-decoration: none !important;
+  font-weight: 700;
+  transition: all .2s ease-in-out; }
+
+.slick-dots li button::before {
+  color: white !important; }
+
+.slick-dots li.slick-active button::before {
+  color: white !important; }
+
+.loop-table--header {
+  padding: .7rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  background-color: var(--main-deepest-purple); }
+
+.loop-table--cell {
+  line-height: 3rem;
+  font-weight: 200; }
+
+.loop-table--row {
+  margin-bottom: 1rem;
+  border: dashed 1px var(--main-purple); }
 
 .loop-card--header {
   position: relative;
@@ -152,7 +301,7 @@ button > i {
   background-color: var(--theme-bg);
   color: var(--theme-font); }
 
-.form-control:focus, .btn:focus {
+.form-control:focus {
   box-shadow: 0px 0px 0px 5px rgba(var(--main-purple-rgb), 0.3); }
 
 label {
