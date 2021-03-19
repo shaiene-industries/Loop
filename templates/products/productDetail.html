@@ -1,34 +1,162 @@
 {% extends 'base/base.html'%}
-{% block title %} Loop{% endblock %}
-{% block content %}
-        <!--Inserting this page's stylesheet-->
-        {% load static %}
-        <link rel="stylesheet" href=" {% static 'products/productDetail/css/style.css' %} "> 
-        <!-- Loading Filters-->
-        {% load filters %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col post-body">
-                    <h1>
-                        {{product.name}}
-                    </h1>
-                    <br>
-                    <img style="height:20vh; width:auto;" src="{% static "products/productDetail/img/loop-gray.png"%}">
-                    <br>
-                    <p>
-                        {{ product.info|formatted_markdown|safe }}
-                    </p>
-            
-                    <a href="{% url 'products:productUpdate' product.pk %}">
-                        <button type="button" class="btn btn-outline-info">Editar</button>
-                    </a>
+{% load static %}
+{% load filters %}
+{% load sass_tags %}
 
-                    <a href="{% url 'products:feed' %}">
-                        <button type="button" class="btn btn-outline-info">Retornar</button>
-                    </a>
+{% block title %}Loop | {{product.name}}{% endblock %}
+{% block custom_css %} 
+<link rel="stylesheet" href=" {% sass_src 'products/home/css/style.scss' %} ">
+{% endblock %}
+
+{% block custom_js_bottom %}
+<script type="text/javascript" src="{% static 'products/productDetail/js/main.js' %}"></script>
+{% endblock %}
+
+{% block content%}
+<div class="col-sm-10">
+    <div class="container-fluid container-page p-4 pb-3">
+        <div class="row justify-content-between">
+            <div class="col-md d-inline-flex align-items-baseline">
+                <h1 class="loop--title user-text">{{product.name | truncatechars:35}}</h1>
+                <time class="text-muted">{{product.created_at| date:"d/m/y à\s H:i"}}</time>
+            </div>
+            <div class="col-md-auto my-md-0 my-2">
+                <a href="{% url 'products:exchange' product.pk %}">
+                <button class="btn btn-loopYellow d-block mx-auto" data-bs-toggle="modal" data-bs-target="#troca-modal">Tenho um produto pra trocar!</button>
+                </a>
+            </div>
+        </div>   
+        <div class="row mt-3">
+            <div class="col-md-6">
+                {% if product.product_image_set.exists %}
+                <div class="product_img--carousel">
+                    {% for product_image in  product.product_image_set.all %}
+                        <img src="{{product_image.image.url}}" class="img-to-modal">
+                    {% endfor %}
+                </div> 
+                {% else %}
+                    <img src="{% static 'base/img/logo_placeholder.svg'%}" class="mb-2" alt="Placeholder">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="container-fluid loop-table">
+                    <div class="row loop-table--row">
+                        <div class="col-12 loop-table--header">
+                            Nome
+                        </div>
+                        <div class="col-12 loop-table--cell">
+                            {{product.name}}
+                        </div>
+                    </div>
+                    <div class="row loop-table--row">
+                        <div class="col-12 loop-table--header">
+                            Adicionado em
+                        </div>
+                        <div class="col-12 loop-table--cell">
+                            {{product.created_at | date:"d/m/y à\s H:i"}}
+                        </div>
+                    </div>
+                    <div class="row loop-table--row">
+                        <div class="col-12 loop-table--header">
+                            Descrição
+                        </div>
+                        <div class="col-12 loop-table--cell">
+                            {{product.info| truncatechars:100 |formatted_markdown|safe}}
+                            <button type="button" class="btn btn-circle float-end m-1" data-bs-toggle="modal" data-bs-target="#info-modal">
+                            <span class="gg-math-plus"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row loop-table--row">
+                        <div class="col-12 loop-table--header">
+                            Dono
+                        </div>
+                        <div class="col-12 loop-table--cell p-2 d-flex justify-content-center">
+                            <a href="{{product.user.profile.get_absolute_url}}" class="user-profile">
+                                <div class="user-profile--img-wrapper">
+                                {% if product.user.profile.profile_image %}
+                                    <img src='{{product.user.profile.profile_image.url}}' class="user-profile--img">
+                                {% else %}
+                                    <img src="{% static 'base/img/logo_placeholder.svg'%}" class="user-profile--img" alt="Placeholder">
+                                {% endif %}
+                                </div>
+
+                                <span class="user-profile--name ms-2">{{product.user.username}}</span>
+                                <span class="user-profile--rank">| Rank: <b>{{product.user.profile.rank}}</b>/5</span> 
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="loop--subtitle">Tenho interesse em trocar por:</h2>
+                <div class="d-flex justify-content-end">
+                    <div class="flecha"></div>
+                </div>
+            </div>
 
+            <div class="troco-por col-12">
+                {% for troco in product.trocopor.all %}
+                    <div class="card bg-dark text-white mx-3">  
+                    {% if troco.product_image_set.exists %}
+                         <div id="product_img--carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for product_image in  troco.product_image_set.all %}
+                            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                                <img src="{{product_image.image.url}}" class="card-img-top d-block" alt="Placeholder">
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <div class="carousel-control-prev" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </div>
+                        <div class="carousel-control-next" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </div>
+                    </div> 
+                    {% else %}
+                        <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
+                    {% endif %}
+             
+                    <div class="card-body">
+                        <div>
+                            <a class="d-inline card-title" href="{% url 'products:detail' troco.user.pk troco.pk %}">
+                                <b>{{ troco.name}}</b>
+                            </a>
+                            <h3 class="card-subtitle text-muted d-inline">
+                                {{troco.get_category_display}}
+                            </h3>
+                        </div>
+                        <div class="card-text">
+                            <p class="card-text--hide">{{troco.info|safe}}<p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Descrição do Produto</h1>
+        <button type="button" class="btn btnClose" data-bs-dismiss="modal" aria-label="Close"><i class="gg-close"></i></button>
+      </div>
+      <div class="modal-body">
+        {{product.info|formatted_markdown|safe}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'plugins/img_modal/img_modal.css' %}">
+<script type="text/javascript" src="{% static 'plugins/img_modal/img_modal.js' %}"></script>
 {% endblock %}
+
 

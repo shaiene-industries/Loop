@@ -1,0 +1,84 @@
+@import '../../../base/css/style.scss';
+
+.container-page{
+    background-color: var(--main-deep-purple);
+}
+
+@mixin loop-headers(){
+    padding: 0.6rem;
+    border-bottom: dashed 2px  var(--main-purple);
+    font-weight: lighter;
+}
+
+.loop--title{
+    @include loop-headers();
+    font-size: 2.5rem;    
+}
+.loop--subtitle{
+    @include loop-headers();
+    font-size: 1.5rem;
+}
+@mixin corpo-flecha{
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+@mixin flecha-triangulo{
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 0 0 0 0.25em;
+    position: absolute;
+}
+@mixin flecha-esq{
+    clip-path: polygon(50% 0, 0 50%, 50% 100%);
+}
+@mixin flecha-dir{
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%);
+}
+@mixin flecha-final{
+    clip-path: polygon(50% 51%, 0 0, 100% 0);
+}
+.flecha{
+    @include corpo-flecha;
+    border-right: dashed 2px  var(--main-purple);
+    &:after{
+        @include flecha-final;
+        @include flecha-triangulo;
+        background-color: var(--main-yellow);
+        bottom: -13px;
+        right: -11px;
+        z-index: 999;
+    }
+}
+.pill-group{
+    background: var(--main-deep-purple);
+    border-radius: 50rem;
+    margin-bottom: 0.7rem;
+    & > *{
+        font-size: medium;
+    }
+}
+
+.carousel-control-next, .carousel-control-prev {
+	opacity: 1 !important;
+}
+.card-img-top{
+    width: 100%;
+}
+
+.card-text--hide{
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-title{
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--theme-font);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover{
+        color: var(--main-yellow)
+    }
+}
+

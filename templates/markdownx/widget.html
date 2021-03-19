@@ -1,15 +1,10 @@
 
-<nav> 
-    <div class="nav nav-pills bg-dark" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-body" role="tab" aria-controls="nav-body" aria-selected="true">Body</a>
-      <a class="nav-item nav-link" id="nav-profile-prw" data-toggle="tab" href="#nav-prw" role="tab" aria-controls="nav-prw" aria-selected="false">Preview</a>
-    </div>
-  </nav>
-  <div class="tab-content markdownx" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-body" role="tabpanel" aria-labelledby="nav-body-tab">
-            {% include 'django/forms/widgets/textarea.html' %}
-        </div>
-        <div class="tab-pane fade" id="nav-prw" role="tabpanel" aria-labelledby="nav-profile-prw">
-            <div class="markdownx-preview"></div>
-        </div>
-  </div>
+<div class="container-fluid p-0 markdownx">
+	<div class="row">
+		<div class="col-md-6">{% include 'django/forms/widgets/textarea.html' %}</div>
+		<div class="col-md-6"><div class="markdownx-preview"></div></div>
+	</div>
+</div>
+
+
+

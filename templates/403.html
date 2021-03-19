@@ -1,0 +1,30 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% load filters %}
+{% load sass_tags %}
+
+{% block title %}Loop | Oh-uh... {{product.name}}{% endblock %}
+
+{% block content%}
+<style>
+h1{
+    color:crimson;
+    font-weight: 100;
+}
+</style>
+<div class="col-sm-10" style="font-weight:100">
+    <div class="container-fluid container-page p-4 pb-3">
+        <div class="row justify-content-between">
+            <h1>Algo de errado não está certo...</h1>
+            <h2>{{exception}}</h2>
+            <div class="col-auto">
+                <a href="{% url 'products:home'%}" onclick="window.history.go(-1); return false;">
+                <button class="btn btn-outline-loopYellow mt-5">Voltar pra página anterior?</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

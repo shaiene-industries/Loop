@@ -1,0 +1,117 @@
+@import '../../home/css/style.scss';
+@import '../../../users/css/style.scss';
+
+.loop--title-box{
+    @extend .loop--title;
+    border: dashed 2px  var(--main-purple);
+    word-break: break-word;
+}
+.button-submit:hover{
+    background-color: var(--main-deepest-purple);
+}
+.saved-message {
+    position: absolute;
+    width: 50vw;
+    top: 1%;
+    & div{
+        box-shadow: 0 0 18px 2px #286f0c;
+        border-radius: 1rem;
+        padding: 1rem;
+        background-color: #209c15;
+        color: white;
+        min-height: 5rem;
+    }
+    & i{
+        float:inline-end;
+        cursor: pointer;
+    }
+    & span{
+        word-break: break-word;
+    }
+}
+p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-width: 75ch;
+    line-height: 1;
+    word-spacing: .1rem;
+}
+.border-left{
+    border-left: solid 4px var(--main-yellow);
+    padding-left: 1rem;
+}
+.col-text{
+    background-color: var(--main-yellow);
+    color: var(--theme-bg);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    & p{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.exchange-flecha{
+    @include corpo-flecha;
+    border: none;
+    color: var(--main-yellow);
+    width: min-content;
+
+    &:before, &:after{
+        @include flecha-triangulo;
+        bottom: 50%;
+        transform: translateY(50%);
+        background-color: var(--main-purple);
+    }
+    &:before{
+        @include flecha-esq;
+        left: -10px;
+    }
+    &:after{
+        @include flecha-dir;
+        right: -10px;
+    }
+}
+.logo-infinite{
+    height: auto;
+    max-width: 10rem;
+}
+.light-text{
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+/*------------------------------------------ Overriding Select2*/ 
+.select-2-col{
+    & > * {
+        width: 100% !important;
+    }
+    & *{
+        background-color: var(--main-deepest-purple) !important;
+    }
+}
+.select2-container--default .select2-results__option[aria-selected="true"]{
+    background-color: #382a46 !important;
+}
+.select2-search input{
+    color: var(--theme-font) !important;
+    border: solid 1px #382a46 !important;
+    box-shadow: 1px 1px 5px 2px black;
+}
+.select2-search input::placeholder{
+    content: "Pesquise aqui um item seu";
+}
+.select2-container--default .select2-selection--single, 
+.select2-dropdown{
+    border-color: #382a46 !important;
+}
+.select2-container *{
+    background-color: var(--main-deepest-purple) !important;
+}
+.select2-selection__rendered{
+    color: var(--theme-font) !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+    background-color: var(--main-purple) !important;
+}
+.select2-dropdown{
+    background-color: var(--main-deep-purple) !important;
+}

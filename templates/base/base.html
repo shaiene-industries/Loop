@@ -15,6 +15,9 @@
         <!--jQuery-->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+        <!--jQuery Migrate-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script>
+
         <!-- Bootstrap-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -39,10 +42,16 @@
         <link rel="stylesheet" href="{% static 'plugins/tooltip/tooltip.css' %}">
         <script type="text/javascript" src="{% static 'plugins/tooltip/tooltip.js' %}"></script>
 
+        <!--Slick Carousel-->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>   
+
+
         <!--Custom page Css-->
         {% block custom_css %}{% endblock%}
-         <!--Custom page js-->
-        {% block custom_js %}{% endblock%}
+
+        <!--Custom page JS-->
+        {% block custom_js_top %}{% endblock %}
         
     </head>
     <body>
@@ -95,19 +104,24 @@
         {% endblock %}
         
         <!-- Main -->
-        <div class="container-fluid" id="page-container" >
-            <div class="row justify-content-center h-100">           
-                {% block content %}
+            <div class="container-fluid" id="page-container" >
+                <div class="row justify-content-center mb-3">           
+                    {% block content %}
 
-                {% endblock %}
+                    {% endblock %}
+                </div>
             </div>
+
+            <!--Custom page js-->
+            {% block custom_js_bottom %}{% endblock%}   
+            <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>   
+
+            <!-- Footer -->
+            <footer class="footer row py-3">
+                <div class="container p-4">
+                    <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
+                </div>
+            </footer>
         </div>
-        <div class="push"></div>
-        <!-- Footer -->
-        <footer class="footer py-3">
-            <div class="container">
-                <span class="text-muted">Desenvolvido por <a href="https://github.com/Shaiene-kun" target="_blank">Shaiene-kun</a> e <a href="https://github.com/yasmin-liban" target="_blank">yasmin-liban</a> </span>
-            </div>
-        </footer>
   </body>
 </html>

@@ -5,11 +5,13 @@ from markdownx import urls as markdownx
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls',namespace='products') ),
-    url(r'^markdownx/', include(markdownx)),
     path('users/', include('users.urls',namespace='users')),
+    path("select2/", include("django_select2.urls")),
+    url(r'^markdownx/', include(markdownx)),
 ]
 
 # Serving dynamic files in development
