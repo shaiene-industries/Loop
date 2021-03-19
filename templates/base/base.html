@@ -90,7 +90,7 @@
                     </div>
                     
                     <div class="col-md-6 mx-sm-auto order-md-2 order-3 mb-md-0 mb-2">
-                        <form id="nav-search" class="input-group search--form" method="GET">
+                        <form id="nav-search" class="input-group search--form" method="GET" action="{% url 'products:home' %}">
                             <input id="search--input" placeholder="O que você vai trocar hoje?" 
 								name="q" aria-label="Pesquisar produtos" aria-describedby="search-icon">
                             <span type="submit" class="input-group-text" id="search-icon" 
