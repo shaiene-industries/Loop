@@ -51,10 +51,11 @@ class Products(models.Model):
             'PET':("#874ab0","🐶"),
         }
  
+        cat_choices = dict(self.CATEGORY_CHOICES) 
         badges = []
-        for cat in self.trocopor.all():
-            cat_face = cat_badge.get(cat.category)
-            badge = {'color':cat_face[0], 'icon':cat_face[1],'name':cat.get_category_display()}
+        for cat in self.trocopor.values('category').distinct():
+            cat_face = cat_badge.get(cat['category'])
+            badge = {'color':cat_face[0], 'icon':cat_face[1],'name':cat_choices[cat['category']]}
             
             badges.append(badge)
         return badges
