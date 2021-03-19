@@ -25,7 +25,7 @@ class Profile(models.Model):
         return self.user.username
 
     def get_absolute_url(self):
-        return reverse('users:minha_conta', kwargs={'pk':self.user.pk})
+        return reverse('users:other_user_account', kwargs={'pk':self.user.pk})
 
 class ContactInfo(models.Model):
     """
