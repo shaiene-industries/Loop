@@ -49,32 +49,35 @@
                                 <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top">
                             {% endif %}
                             </a>          
-                    </a>
-                            </a>          
                             <div class="card-body">
-									rel="tooltip">
-                                    {% for badge in product.get_badges %}
-                                    <a href="#" class="badge rounded-pill me-1" style="background-color:{{badge.color}}" title="{{badge.name}}">
-                                        {{badge.icon}}
+                                <div>
+                                    <div class="pills">
+                                        <div class="pill-group" role="button" title="Pelo que eu tenho interesse em trocar" 
+                                            rel="tooltip">
+                                            {% for badge in product.get_badges %}
+                                            <a href="#" class="badge rounded-pill me-1" style="background-color:{{badge.color}}" title="{{badge.name}}">
+                                                {{badge.icon}}
+                                            </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
+                                        <b>{{ product.name}}</b>
                                     </a>
-                                    {% endfor %}
+                                    <h3 class="card-subtitle text-muted d-inline">
+                                        {{product.get_category_display}}
+                                    </h3>
                                 </div>
-                            </div>
-                            <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
-                                <b>{{ product.name}}</b>
-                            </a>
-                            <h3 class="card-subtitle text-muted d-inline">
-                                {{product.get_category_display}}
-                            </h3>
-                        </div>
-                       <div class="card-text">
-                            <p class="card-text--hide">{{product.info|safe}}<p>
-                        </div>
+                            <div class="card-text">
+                                    <p class="card-text--hide">{{product.info|safe}}<p>
+                                </div>
 
+                            </div>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
