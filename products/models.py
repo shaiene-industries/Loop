@@ -65,7 +65,9 @@ class Products(models.Model):
 def product_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'products/{0}/{1}'.format(instance.product.id, filename)
+
 class Product_Image(models.Model):
+    """ Related Object of the images a product can carry"""
     product = models.ForeignKey('Products', on_delete=models.CASCADE)
     image = models.ImageField(null=True, upload_to=product_directory_path)
     
