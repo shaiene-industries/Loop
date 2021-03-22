@@ -1,0 +1,46 @@
+{% load static %}
+{% load sass_tags %}
+
+<div class="container-fluid p-0">
+    <div class="row g-4 row-cols-md-2 row-cols-1" id="products-container">                    
+        {% for product in products %}  
+        <div class="col-lg-4 col-sm-6 products-item">
+            <div class="card bg-dark text-white">  
+                <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
+                {% if product.product_image_set.exists %}
+                    <img src="{{product.product_image_set.first.image.url}}" class="card-img-top"
+                    onerror="this.src='{% static 'base/img/logo_placeholder.svg'%}'">
+                {% else %}
+                    <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top">
+                {% endif %}
+                </a>          
+                <div class="card-body">
+                    <div>
+                        {% if placebadges %}
+                        <div class="pills">
+                            <div class="pill-group" role="button" title="Pelo que eu tenho interesse em trocar" 
+                                rel="tooltip">
+                                {% for badge in product.get_badges %}
+                                <a href="#" class="badge rounded-pill me-1" style="background-color:{{badge.color}}" title="{{badge.name}}">
+                                    {{badge.icon}}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        <a class="d-inline card-title" href="{% url 'products:detail' product.user.pk product.pk %}">
+                            <b>{{ product.name}}</b>
+                        </a>
+                        <h3 class="card-subtitle text-muted d-inline">
+                            {{product.get_category_display}}
+                        </h3>
+                    </div>
+                    <div class="card-text">
+                        <p class="card-text--hide">{{product.info|safe}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
