@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from .models import Products, Troca
 from .forms import *
+from utils.send_exchange_email import send_contact_info_mails
 
 class FeedView(ListView):
 	"""Front page, products ordered by most recent"""
@@ -20,9 +21,9 @@ class FeedView(ListView):
 		queryset = self.queryset
 
 		if(user_query):
-			description =  Q(info=user_query)
-			name =  Q(name=user_query)
-			username =  Q(user__username=user_query)
+			description =  Q(info__icontains=user_query)
+			name =  Q(name__icontains=user_query)
+			username =  Q(user__username__icontains=user_query)
 
 			queryset = queryset.filter(description | name | username)
 
@@ -62,7 +63,7 @@ class DeleteProductView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('products:feed')
 
 @login_required
-def exchange(request,pk):
+def exchange(request, pk):
     """
     Receives an Product primary key and resolves if that product is aceptable to be exchanged, if yes, display exchange 
     page with exchange form. Also saves form.
@@ -86,8 +87,9 @@ def exchange(request,pk):
         form = ExchangeForm(request.POST, initial={'product_chosen':product_chosen}, user=request.user)
         if form.is_valid():
             form.save()
+            send_contact_info_mails(form)
             saved = True
-    
+
     return render(
         request,
         'products/exchange.html',
