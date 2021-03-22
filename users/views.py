@@ -12,24 +12,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from products.models import Products
 
 # My Forms & Models
 from .forms import LoginForm, CreateUserForm, userAccount
 from .models import Profile
 
 class CreateUser(CreateView):
-    """ Criação (registro) de usuário """
-    template_name = 'users/create.html'
-    form_class = CreateUserForm
-    # def get_success_url(self):
-    #     return reverse('products:home')
-    def get_success_url(self):
-        return reverse('users:my_account')
+	""" Criação (registro) de usuário """
+	template_name = 'users/create.html'
+	form_class = CreateUserForm
+	# def get_success_url(self):
+	#     return reverse('products:home')
+	def get_success_url(self):
+		return reverse('users:my_account')
 
 class LoginUser(LoginView):
-    """" Tela de Login de Usuário """
-    template_name ='users/login.html'
-    authentication_form = LoginForm
+	"""" Tela de Login de Usuário """
+	template_name ='users/login.html'
+	authentication_form = LoginForm
 
 @login_required
 def detail_user(request, pk=False):
@@ -57,9 +58,10 @@ def detail_user(request, pk=False):
 	# TODO optimize or remove these verifications 
 	def user_own_page(user=request.user):
 		"""Deals with redirects to it's own page"""
-		return ({ "form":userAccount, "user":request.user }, "users/detail.html")
+		return ({ "form":userAccount, "user":user }, "users/detail.html")
 	
 	if(pk):
+		products = Products.objects.filter(user__pk=pk)
 		# Usuário visitando sue própio perfil
 		if(request.user.pk == pk):
 			context, template_name = user_own_page()
@@ -68,7 +70,10 @@ def detail_user(request, pk=False):
 			template_name= "users/detail.html",
 			# template_name= "users/other_user_detail.html",
 	else:
+		products = Products.objects.filter(user=request.user)
 		context, template_name = user_own_page()
+	
+	context['products'] = products
 
 	return render(
 		request=request,
@@ -77,7 +82,7 @@ def detail_user(request, pk=False):
 	)
 
 class RedirectLogin(RedirectView):
-    """ Redirects to my account page, after login"""
-    def dispatch(self, request, *args, **kwargs):
-        return HttpResponseRedirect(reverse('users:my_account'))
-    
+	""" Redirects to my account page, after login"""
+	def dispatch(self, request, *args, **kwargs):
+		return HttpResponseRedirect(reverse('users:my_account'))
+	
