@@ -42,10 +42,26 @@ class ContactInfo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.CharField(max_length=3, choices=CONTACT_TYPE_CHOICES, help_text="Nome do meio de contato")
     info = models.CharField(max_length=50)
+    
+    def __str__(self):
+
+        return str(self.user) + " | " + self.get_type_display()
 
 # Create and update an instance of profile, after an User instance is saved
 @receiver(post_save, sender=User) # Using a SIGNAl from user to profile
 def create_update_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+    instance.profile.save()
+
+# Create and update an instance of ContactInfo, after an User instance is saved
+@receiver(post_save, sender=User) # Using a SIGNAl from user to ContactInfo
+def create_update_contact_info_email(sender, instance, created, **kwargs):
+    if(created or not ContactInfo.objects.filter(user=instance).exists()):
+        ContactInfo.objects.create(
+            user=instance,
+            type="EM",
+            info=instance.email,
+        )
+
     instance.profile.save()
