@@ -6,26 +6,48 @@ from django.forms.widgets import HiddenInput
 from .models import *
 from markdownx.fields import MarkdownxFormField
 from utils.form_utils import bootstrap_format
-from django_select2.forms import Select2Widget
+from django_select2.forms import ModelSelect2MultipleWidget, Select2Widget
 
 class ProductForm(forms.ModelForm):
+    info = MarkdownxFormField()
     class Meta:
         model = Products
         fields = ("name", "category", "info", "trocopor")
-        
+
         widgets = {
-            'body': MarkdownxFormField(),
+            'trocopor': ModelSelect2MultipleWidget(
+                model = Products,
+                search_fields=['name__icontains','category__icontains']
+            )
         }
 
         labels = {
             "name": "Nome",
             "category": "Categoria",
-            "info": u"Descrição",
-            "product_image_set":u"Fotos"
         }
-        
-ProductInlineFormSet = inlineformset_factory(Products, Product_Image,fields=("image",),)
 
+    def __init__(self,*args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['info'].label = "Descrição"
+        self.fields = bootstrap_format(self.fields,float=True)
+        self.fields['info'].widget.attrs["resize"]= "none"
+        self.fields['info'].widget.attrs["placeholder"]= "Descreva aqui, da maneira que quiser, informações sobre seu item.\
+            Caso queira deixar seu texto em negrito coloque ele entre **dois pares astericos**.\
+            Caso queira deixa-lo em itálico coloque entre *um par de asteriscos*.\
+            Para criar titulos coloque # no inicio da linha separado do texto, para subtitulos use duas ##\
+            Para textos ainda menores pode usar ### e assim em diante."
+
+class Product_ImageForm(forms.ModelForm):
+    class Meta:
+        model = Product_Image
+        fields = ("image",)
+
+        labels = {
+            "image":""
+        }
+
+
+ProductInlineFormSet = inlineformset_factory(Products, Product_Image,form=Product_ImageForm,)
 
 
 class ExchangeForm(forms.ModelForm):

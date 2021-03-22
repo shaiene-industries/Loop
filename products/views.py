@@ -28,23 +28,19 @@ class NewProductView(LoginRequiredMixin, CreateView):
     form_class = ProductForm
     template_name = 'products/addProduct.html'
     login_url = reverse_lazy('users:login')
-    # fields = "__all__"
-
-    # # Overriding form_valid to associate the user to the product
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(NewProductView, self).get_context_data(**kwargs)
         if self.request.POST:
-            context['product_formset'] = ProductInlineFormSet(self.request.POST)
+            context['product_formset'] = ProductInlineFormSet(self.request.POST, self.request.FILES)
         else:
             context['product_formset'] = ProductInlineFormSet()
+        context['products_example'] = Products.objects.order_by("?")[:5]
         return context
 
     def form_valid(self, form):
         context = self.get_context_data(form=form)
+        form.instance.user = self.request.user
         formset = context['product_formset']
         if formset.is_valid():
             response = super().form_valid(form)
