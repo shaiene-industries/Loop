@@ -1,52 +1,116 @@
 {% extends 'base/base.html' %}
-{% block title %}Add Product | Minael's Blog{% endblock %}
-{% load crispy_forms_tags %}
+{% load static %}
+{% load filters %}
+{% load sass_tags %}
 
+{% block title %}Adicionando Item | Loop{% endblock %}
+
+{%  block custom_css %}
+<link rel="stylesheet" href="{% sass_src 'products/addProduct/css/style.scss' %}" type="text/css" />
+{% endblock %}
+
+{% block custom_js_bottom %}
+<script type="text/javascript" src="{% static 'products/addProduct/js/main.js' %}"></script>
+{{form.media}}
+{% endblock %}
 
 {% block content %}
-    {% comment %} Inserting this page's stylesheet {% endcomment %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'products/addProduct/css/style.css' %}"> 
-    {% comment %} <script src="{% static 'posts/postForm/js/main.js' %}"></script> {% endcomment %}
-    <div class="row">
-        <div class="col">
-            <div class="card text-white bg-dark mb-3">
-                <h1 class="card-header"> Adicione um produto legal </h1>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="row">
-                            {% if field == 'info' %}
-                                <div class="col">
-                                {{form.body}}
+<div class="col-sm-10">
+    <div class="container-fluid container-page p-4 pb-3">
+        <div class="row justify-content-between">
+            <div class="col-md d-inline-flex align-items-baseline">
+                <h1 class="loop--title">Adicione algo novo</h1>
+            </div>
+        </div>   
+        <div class="row mt-3">
+             <form method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="container">
+                    <div id="first-page">
+                        <div class="row row-cols-1 g-4 justify-content-center">
+                            <div class="col-md-6">                                                      
+                                    <div class="row form-floating mb-2" style="postion:relative;">
+                                        {{form.name}}                              
+                                        <label for="{{ form.name.id_for_label }}">{{form.name.label}}</label>
+                                    </div>
+                                    <div class="row form-floating" style="postion:relative;">
+                                        {{form.category}}                              
+                                        <label for="{{ form.category.id_for_label }}">{{form.category.label}}</label>
+                                    </div>                                
+                            </div>
+                           {{product_formset.management_form}}
+                           <div class="slickyy col-md-6">
+                           {% for form in product_formset%}
+                            <label class="product-image--wrapper product-image--after">
+                                {{form.image}}
+                                <img class="img-load"/>
+                            </label>
+                           {% endfor %}
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="label_bigger">
+                                    {{form.info.label_tag}}
                                 </div>
-                            {% else %}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{ field.label_tag }}
-                                        {{ field }}
+                                {{form.info}}                              
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="second-page">
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <div class="label_bigger w-60">
+                                    Escolha quais produtos são similares ao que você deseja trocar esse produto:                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                    Você pode pesquisar abaixo por todos os items cadastrados no nosso sistema para poder achar algo que 
+                                    seja do seu interesse, pesquisa ai! Ao lado, algums produtos que já estão cadastrados no nosso sistema para
+                                    você poder comparar.           
+                                    </div>
+                                    <div class="col-12 my-md-0 my-3">
+                                    {{form.trocopor}}
                                     </div>
                                 </div>
-                            {% endif %}
                             </div>
-                        {% endfor %}
-                        {{product_formset}}
-                        <div class="row">
-                            <div class='col d-flex flex-row-reverse'>
-                                <button class="btn btn-info btn-lg">Salvar</button>
-                            <div>
+                            <div class="troco-por col-lg-6 ">
+                                {% for product in products_example %}
+                                    <div class="card bg-dark text-white mx-2">  
+                                     {% if product.product_image_set.exists %}
+                                        <img src="{{product.product_image_set.first.image.url}}" class="card-img-top"
+                                        onerror="this.src='{% static 'base/img/logo_placeholder.svg'%}'">
+                                    {% else %}
+                                        <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div>
+                                            <a class="d-inline card-title fs-4">
+                                                <b>{{ product.name}}</b>
+                                            </a>
+                                            <h3 class="card-subtitle text-muted d-inline">
+                                                {{product.get_category_display}}
+                                            </h3>
+                                        </div>
+                                        <div class="card-text">
+                                            <p class="card-text--hide">{{product.info|safe}}<p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
-<div style="width:50%">
-    <div id="cropper"></div>
-</div>                        
-                    </form>
-                    {{ form.media }}
+                        <div class="col-8 mx-auto my-4 d-grid">
+                            <button class="btn button-submit" type="submit">Adicionar</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-
+               
+            </form>
         </div>
-    </div>   
-
+    </div>
+</div>
 {% endblock %}   
