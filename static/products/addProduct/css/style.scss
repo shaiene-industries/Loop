@@ -1,0 +1,83 @@
+@import '../../../users/css/style.scss';
+@import '../../home/css/style.scss';
+@import '../../exchange/css/style.scss';
+
+.form-control{
+    box-shadow: 1px 1px 12px 1px var(--main-deepest-purple)
+}
+input[type="file"]{
+    display: none;
+}
+textarea{
+    resize: none;
+    overflow: auto;
+    max-height: 300px;
+}
+.markdownx-preview{
+    height: 266px;
+    overflow: auto;
+    background-color: #111;
+    border-radius: .25rem;
+    padding: .5rem;
+    color: #c6c6c6;
+}
+@media (max-width:768px){
+    .markdownx-preview{
+        margin: 1rem 0 2rem 0;
+    }
+}
+.product-image--wrapper{
+    width: 150px;
+    height: 300px;
+    background-image:linear-gradient(
+    hsl(202.11, 62.09%, 30%) 0%,
+    hsl(203.76, 60.24%, 30.81%) 8.1%,
+    hsl(208.2, 56.15%, 32.94%) 15.5%,
+    hsl(214.58, 51.79%, 35.87%) 22.5%,
+    hsl(222.01, 48.06%, 39.25%) 29%,
+    hsl(229.85, 45.11%, 42.82%) 35.3%,
+    hsl(237.63, 42.85%, 46.41%) 41.2%,
+    hsl(244.72, 46.26%, 48.16%) 47.1%,
+    hsl(250.14, 52.13%, 48.92%) 52.9%,
+    hsl(254.35, 58.1%, 49.42%) 58.8%,
+    hsl(257.71, 64.19%, 49.63%) 64.7%,
+    hsl(260.45, 70.47%, 49.51%) 71%,
+    hsl(262.74, 77.04%, 49.03%) 77.5%,
+    hsl(264.7, 84.03%, 48.16%) 84.5%,
+    hsl(266.4, 91.59%, 46.86%) 91.9%,
+    hsl(267.91, 100%, 45.1%) 100%
+        );
+    border: solid 15px #111;
+    position: relative;
+    cursor: pointer;
+    // border: so
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.042),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.061),
+        0 12.5px 10px rgba(0, 0, 0, 0.075),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.089),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.108),
+        0 100px 80px rgba(0, 0, 0, 0.15);
+    }
+.product-image--after:after{
+    content: "Clique aqui para adicionar uma foto 📷";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1.5rem;
+    color: #92aaaa;
+    border-bottom: solid 3px rgb(135, 167, 170);
+}
+.img-load{
+    margin: auto;
+    height: 100%;
+    width: auto;
+}
+.label_bigger{
+    font-size: 1.7rem;
+    font-weight: 100;
+    margin-bottom: .5rem;
+}
+
+
