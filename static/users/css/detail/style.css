@@ -141,6 +141,30 @@ img[id^="logo"] {
 
 /* Container do body*/
 #page-container {
+  height: 100vh;
+  margin-top: 1%; }
+
+.button-info {
+  position: absolute;
+  color: var(--main-yellow);
+  top: 0;
+  right: 0;
+  z-index: 99;
+  height: 100%;
+  font-size: x-large;
+  padding: 1rem;
+  text-decoration: none; }
+  .button-info:hover {
+    color: var(--main-yellow); }
+
+.button-submit {
+  background-color: var(--main-purple);
+  color: var(--theme-font) !important; }
+  .button-submit:hover {
+    background-color: var(--main-deep-purple); }
+
+button > i {
+  display: inline-block !important;
   height: 100%;
   margin-top: 1rem;
   min-height: calc(100vh - 58px - 96px - 1rem); }
@@ -215,13 +239,15 @@ img[id^="logo"] {
   color: var(--main-purple); }
 
 .user-profile--img-wrapper {
-  border-radius: 50%;
-  display: flex; }
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%; }
   .user-profile--img-wrapper .user-profile--img {
-    object-fit: cover;
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%; }
+    display: inline;
+    height: 120%;
+    width: auto; }
 
 .user-profile--name {
   font-size: 1.3rem;
@@ -250,26 +276,41 @@ img[id^="logo"] {
   margin-bottom: 1rem;
   border: dashed 1px var(--main-purple); }
 
-.button-info {
-  position: absolute;
-  color: var(--main-yellow);
-  top: 0;
-  right: 0;
-  z-index: 99;
-  height: 100%;
-  font-size: x-large;
-  padding: 1rem;
-  text-decoration: none; }
-  .button-info:hover {
-    color: var(--main-yellow); }
+body {
+  color: #ccc; }
 
-.button-submit {
-  background-color: var(--main-purple);
-  color: var(--theme-font) !important; }
-  .button-submit:hover {
-    background-color: var(--main-deep-purple); }
+.profile img {
+  border: 0.25rem solid var(--main-yellow);
+  border-radius: 50%;
+  object-fit: cover;
+  height: 15rem;
+  width: 15rem; }
 
-button > i {
-  display: inline-block !important; }
+@media (min-width: 768px) {
+  .left-border {
+    border-left: 0.2rem solid var(--theme-font);
+    padding-left: 3rem; } }
+
+#bio, .border-line, .underline, .transparent {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #bbb; }
+
+.underline {
+  border-bottom: .1rem solid #aaa !important; }
+
+.border-line {
+  border: .1rem solid #aaa !important;
+  border-radius: .2rem;
+  padding: 2%; }
+
+#bio {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3rem;
+  max-height: 7rem; }
 
 /*# sourceMappingURL=style.css.map */

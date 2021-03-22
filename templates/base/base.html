@@ -70,25 +70,34 @@
                         </div>
                     </div>
 
-                    <div class="col-md-auto col d-flex justify-content-end order-md-3 order-2">
+                    <div class="col-md-auto col d-flex justify-content-end align-items-center order-md-3 order-2"> 
                         {% block user_info %}
                         <ul class="navbar-nav flex-row" style="width:max-content">
-                            <li class="nav-item">
-                                <a class="nav-link active pe-2" href="{% url 'users:signup'%}">Criar Conta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link border-start ps-2" href="{% url 'users:login'%}">Logar</a>
-                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{% url 'users:my_account'%}">Olá, {{request.user.get_username}}</a>
+                                </li>
+                                <a href="{% url 'users:logout' %}"><button class="btn btn-outline-danger">Sair</button></a>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link active pe-2" href="{% url 'users:signup'%}">Criar Conta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link border-start ps-2" href="{% url 'users:login'%}">Logar</a>
+                                </li>
+                            {% endif %}
                         </ul>
                         {% endblock %}
                     </div>
                     
                     <div class="col-md-6 mx-sm-auto order-md-2 order-3 mb-md-0 mb-2">
-                        <form class="input-group search--form">
-                            <input id="search--input" placeholder="Oque você vai trocar hoje?" aria-label="Pesquisar produtos" aria-describedby="search-icon">
-                            <span class="input-group-text" id="search-icon">
-                                <i class="gg-search"></i>
-                            </span>  
+                        <form id="nav-search" class="input-group search--form" method="GET" action="{% url 'products:home' %}">
+                            <input id="search--input" placeholder="O que você vai trocar hoje?" 
+								name="q" aria-label="Pesquisar produtos" aria-describedby="search-icon">
+                            <span type="submit" class="input-group-text" id="search-icon" 
+								onclick="document.getElementById('form_id').submit()">
+								<i class="gg-search"></i>
+                            </span>
                         </form>
                     </div>
                     

@@ -1,4 +1,4 @@
-@import '../../base/css/style.scss';
+@import '../../../base/css/style.scss';
 
 .loop-card--header{
     position: relative;
@@ -34,25 +34,4 @@
 }
 label{
     color: var(--theme-font);  
-}
-.button-info{
-    position: absolute;
-    color: var(--main-yellow);
-    top: 0;
-    right: 0;
-    z-index: 99;
-    height: 100%;
-    font-size: x-large;
-    padding: 1rem;
-    text-decoration: none;
-    &:hover{
-        color: var(--main-yellow);
-    }
-}
-.button-submit{
-    background-color: var(--main-purple);
-    color: var(--theme-font) !important;
-    &:hover{
-        background-color: var(--main-deep-purple);
-    }
 }

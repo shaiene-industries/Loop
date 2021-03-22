@@ -98,9 +98,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
+# Login URLs
 LOGIN_REDIRECT_URL = 'users:login_redirect'
+LOGOUT_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -166,4 +167,22 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
 )
+
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+
+# Email Configs !!! Set HOST_PASSWORD_PATH
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = EMAIL_HOST_USER = "contato.loop.industries@gmail.com" 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = None
+HOST_PASSWORD_PATH = "/home/shaiene-kun/loop-secret"
+"""
+HOST_PASSWORD_PATH must contain only one line with the password
+"""
+if(HOST_PASSWORD_PATH == ""):
+    raise Exception("Set a file path to HOST_PASSWORD_PATH")
+else:
+    with open(HOST_PASSWORD_PATH, "r") as f:
+        EMAIL_HOST_PASSWORD = f.readline().rstrip("\n")

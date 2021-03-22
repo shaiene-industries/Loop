@@ -3,6 +3,9 @@ from django import forms
 from django.forms import widgets
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.forms.forms import Form
+from django.forms.widgets import PasswordInput
+# from django.forms.models import ModelForm, inlineformset_factory
 
 class LoginForm(AuthenticationForm):
     def __init__(self, request=None, *args, **kwargs):
@@ -41,3 +44,10 @@ class CreateUserForm(UserCreationForm):
             'minlength': '8',
             'autocomplete': 'new-password',
         })
+
+class userAccount(Form):
+    password = forms.CharField(required=False, widget=PasswordInput())
+    confirm_password = forms.CharField(required=False, widget=PasswordInput()) 
+    profile_image = forms.ImageField(required=False)
+    date_of_birth = forms.DateField(required=False)
+    bio = forms.CharField(required=False)

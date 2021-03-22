@@ -102,59 +102,59 @@
             <div class="troco-por col-12">
                 {% for troco in product.trocopor.all %}
                     <div class="card bg-dark text-white mx-3">  
-                    {% if troco.product_image_set.exists %}
-                         <div id="product_img--carousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                        {% for product_image in  troco.product_image_set.all %}
-                            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-                                <img src="{{product_image.image.url}}" class="card-img-top d-block" alt="Placeholder">
-                            </div>
-                        {% endfor %}
-                        </div>
-                        <div class="carousel-control-prev" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </div>
-                        <div class="carousel-control-next" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </div>
-                    </div> 
-                    {% else %}
-                        <img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
-                    {% endif %}
-             
-                    <div class="card-body">
-                        <div>
-                            <a class="d-inline card-title" href="{% url 'products:detail' troco.user.pk troco.pk %}">
-                                <b>{{ troco.name}}</b>
-                            </a>
-                            <h3 class="card-subtitle text-muted d-inline">
-                                {{troco.get_category_display}}
-                            </h3>
-                        </div>
-                        <div class="card-text">
-                            <p class="card-text--hide">{{troco.info|safe}}<p>
-                        </div>
-                    </div>
-                </div>
+						{% if troco.product_image_set.exists %}
+							<div id="product_img--carousel" class="carousel slide" data-bs-ride="carousel">
+								<div class="carousel-inner">
+									{% for product_image in  troco.product_image_set.all %}
+										<div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+											<img src="{{product_image.image.url}}" class="card-img-top d-block" alt="Placeholder">
+										</div>
+									{% endfor %}
+								</div>
+								<div class="carousel-control-prev" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</div>
+								<div class="carousel-control-next" type="button" data-bs-target="#product_img--carousel"  data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</div>
+							</div> 
+							{% else %}
+								<img src="{% static 'base/img/logo_placeholder.svg'%}" class="card-img-top" alt="Placeholder">
+						{% endif %}
+				
+						<div class="card-body">
+							<div>
+								<a class="d-inline card-title" href="{% url 'products:detail' troco.user.pk troco.pk %}">
+									<b>{{ troco.name}}</b>
+								</a>
+								<h3 class="card-subtitle text-muted d-inline">
+									{{troco.get_category_display}}
+								</h3>
+							</div>
+							<div class="card-text">
+								<p class="card-text--hide">{{troco.info|safe}}<p>
+							</div>
+						</div>
+                	</div>
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
 <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1>Descrição do Produto</h1>
-        <button type="button" class="btn btnClose" data-bs-dismiss="modal" aria-label="Close"><i class="gg-close"></i></button>
-      </div>
-      <div class="modal-body">
-        {{product.info|formatted_markdown|safe}}
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1>Descrição do Produto</h1>
+				<button type="button" class="btn btnClose" data-bs-dismiss="modal" aria-label="Close"><i class="gg-close"></i></button>
+			</div>
+			<div class="modal-body">
+				{{product.info|formatted_markdown|safe}}
+			</div>
+		</div>
+	</div>
 </div>
 
 <link rel="stylesheet" href="{% static 'plugins/img_modal/img_modal.css' %}">
