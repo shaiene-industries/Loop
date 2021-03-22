@@ -156,8 +156,8 @@ img[id^="logo"]{
 }
 /* Container do body*/
 #page-container{
-    height: 100vh;
     margin-top:1%;
+    min-height: calc(100vh - 98px - 51px);
 }
 
 .button-info{

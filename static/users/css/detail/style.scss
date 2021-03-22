@@ -1,10 +1,11 @@
 @import '../../../base/css/style.scss';
+@import '../..//../products/home/css/style.scss';
 
 body{
     color: #ccc;
 }
 
-.profile img {
+.profile .user-profile-yellow--img img {
     border: .25rem solid var(--main-yellow);
     border-radius: 50%;
     object-fit: cover;
@@ -14,7 +15,7 @@ body{
 
 @media (min-width: 768px){
     .left-border{
-        border-left: .2rem solid var(--theme-font);
+        border-left: .2rem solid var(--main-purple);
         padding-left: 3rem;
         // margin-left: 3rem;
     }
