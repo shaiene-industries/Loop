@@ -7,17 +7,22 @@
 <script src="{% static 'users/js/detail/main.js' %}" type="text/javascript"></script>
 {% endblock %}
 
+{% block title %}Loop | {{user.username}}{% endblock %}
+
 {% block content %}
 <style>
     h4{
         margin-top: 1rem; 
     }
 </style>
-<div class="profile mt-4">
-    <div class="container">
-        <div class="col-sm-10">
-            <div class="container-fluid container-page p-4 pb-3">
-                <h2>Olá de novo, {{user.username}}</h2>
+    <div class="profile col-sm-10">
+        <div class="container-fluid container-page p-4 pb-3">
+            <div class="row justify-content-between">
+                <h1>
+                    <div class="loop--title">
+                    Olá de novo, {{user.username}}
+                    </div>
+                </h1>
                 <form enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     <div class="row mb-3">
@@ -40,9 +45,9 @@
                         <div class="col-md-6">
                         
                         {% comment %} Profile Image {% endcomment %}
-                            <div class="d-flex justify-content-center mb-3">
+                            <div class="d-flex justify-content-center mb-3 user-profile-yellow--img">
                                 {% if user.profile.profile_image %}
-                                <img src="{{user.profile.profile_image.url}}"
+                                <img src="{{user.profile.profile_image.url}}" 
                                 onerror="this.src='{% static 'base/img/logo_placeholder.svg'%}'">
                                 {% else %}
                                 <img src="{% static 'base/img/logo_placeholder.svg'%}">
@@ -64,6 +69,7 @@
                             <h1>Bio</h1>
                             <textarea readonly id="bio" cols="30"
                                 class="editable transparent" name="bio"
+                                resize="none" placeholder="Conte sobre você..."
                                 >{{user.profile.bio}}</textarea>
                         
                         </div>
@@ -106,13 +112,22 @@
                             <input readonly value="{{user.profile.date_of_birth | date:'Y-m-d'}}" 
                                 id="date_of_birth" type="date" class="editable transparent"
                                 name="{{form.date_of_birth.name}}">
-
                         </div>
                     </div>
                 </form>
             </div>
-        </div>            
-    </div>
-</div>
+            <div class="row">
+                <div class="products col-12">
+                    <h1 class="mb-4">
+                        <div class="loop--title">
+                            Meus Produtos
+                        </div>
+                    </h1>
+                    {% include 'components/products-list.html'  with placebadges=False %}
+                </div>
+            </div>
+        </div>
+    </div>            
+
 
 {% endblock content %}
