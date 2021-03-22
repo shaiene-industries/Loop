@@ -100,9 +100,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
+# Login URLs
 LOGIN_REDIRECT_URL = 'users:login_redirect'
+LOGOUT_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
