@@ -146,9 +146,9 @@
 <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" style="max-height: 100px;">
 				<h1>Descrição do Produto</h1>
-				<button type="button" class="btn btnClose" data-bs-dismiss="modal" aria-label="Close"><i class="gg-close"></i></button>
+				<button type="button" class="btn btn-close" data-bs-dismiss="modal" style="color:white;" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				{{product.info|formatted_markdown|safe}}
